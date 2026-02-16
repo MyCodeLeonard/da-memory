@@ -1,0 +1,27 @@
+/* --- Button --- */
+/* Block */
+.button {
+  padding: 8px 16px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Element */
+.button__icon {
+  font-size: 10px;
+}
+
+/* Modifier */
+.button--primary {
+  background-color: rgba(255, 204, 0, 1);
+  color: rgba(33, 48, 73, 1);
+}
+
+body {
+  margin: 0;
+}

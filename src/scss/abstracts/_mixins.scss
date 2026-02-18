@@ -1,0 +1,11 @@
+@mixin flex-center-x-y {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin befor-after($color: transparent) {
+  content: "";
+  position: absolute;
+  background-color: $color;
+}

@@ -4,6 +4,16 @@
   align-items: center;
 }
 
+@mixin flex-center-x {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin flex-center-y {
+  display: flex;
+  align-items: center;
+}
+
 @mixin befor-after($color: transparent) {
   content: "";
   position: absolute;

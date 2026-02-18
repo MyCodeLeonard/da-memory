@@ -4,9 +4,20 @@ function generateCards():void{
     const isChoosePlayer:string | null = localStorage.getItem('choosePlayer');
     const isBoardSize:string | null = localStorage.getItem('boardSize');
 
+    const headerBtn: HTMLElement | null = document.getElementById('header-button');
+    if(headerBtn) headerBtn.addEventListener('click', openOverlay);
+
+    const backToGameBtn: HTMLElement | null = document.getElementById('back-to-game');
+    if(backToGameBtn) backToGameBtn.addEventListener('click', closeOverlay);
+
+    const backToSettingsBtn: HTMLElement | null = document.getElementById('back-to-settings');
+    if(backToSettingsBtn) backToSettingsBtn.addEventListener('click', () => window.location.href = "/settings");
+
     let numberOfCards = Number(isBoardSize?.match(/\d+/));
-    
+
     if(gameField && isGameThemes && isChoosePlayer && isBoardSize){
+        if(numberOfCards > 16) gameField.classList.add('game-field--cardsOver16');
+
         for (let index = 0; index < numberOfCards; index++) {
             const card: HTMLButtonElement = document.createElement('button');
             card.addEventListener('click', () => {
@@ -21,6 +32,30 @@ function generateCards():void{
         }
     }
     else window.location.href = "/settings";
+}
+
+function openOverlay():void{
+    const overlayPopUp = document.getElementById('query-overlay__pop-up');
+    overlayPopUp?.addEventListener('click', bubbling);
+
+    const overlay: HTMLElement | null = document.getElementById('query-overlay');
+    overlay?.addEventListener('click', closeOverlay);
+
+    overlay?.classList.remove('display-none');
+}
+
+function closeOverlay():void{
+    const overlayPopUp = document.getElementById('query-overlay__pop-up');
+    overlayPopUp?.removeEventListener('click', bubbling);
+
+    const overlay: HTMLElement | null = document.getElementById('query-overlay');
+    overlay?.removeEventListener('click', closeOverlay);
+
+    overlay?.classList.add('display-none');
+}
+
+function bubbling(event:Event):void{
+    event.stopPropagation();
 }
 
 window.addEventListener('load',() => generateCards());

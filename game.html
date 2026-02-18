@@ -8,8 +8,75 @@
   </head>
   <body>
     <section class="game-section">
+      <header class="header">
+
+        <div class="header__counters">
+          <div class="header__counters__counter">
+            <img class="header__counters__counter__img header__counters__counter__img--blue" src="" alt="">
+            <span>0</span>
+          </div>
+          <div class="header__counters__counter">
+            <img class="header__counters__counter__img header__counters__counter__img--orange" src="" alt="">
+            <span>0</span>
+          </div>
+        </div>
+
+        <div class="header__current-player">
+          <span class="header__current-player__span">Current player:</span>
+          <img class="header__current-player__img header__current-player__img--orange" src="" alt="">
+        </div>
+
+        <button class="header__button" id="header-button">
+          <img class="header__button__img" src="" alt="">
+          <span class="header__button__span">Exit game</span>
+        </button>
+
+      </header>
+
       <div id="game-field" class="game-field"></div>
     </section>
+
+    <div id="query-overlay" class="query-overlay display-none">
+      <div id="query-overlay__pop-up" class="query-overlay__pop-up">
+        <Span class="query-overlay__pop-up__span">Are you sure you want to quit the game?</Span>
+        <div class="query-overlay__pop-up__buttons">
+          <button id="back-to-game" class="query-overlay__pop-up__buttons__button query-overlay__pop-up__buttons__button--first">Back to game</button>
+          <button id="back-to-settings" href="./settings.html" class="query-overlay__pop-up__buttons__button query-overlay__pop-up__buttons__button--second">Exit game</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="game-over display-none">
+      <!-- <h1 class="game-over__h1">Game over</h1> -->
+      <img class="game-over__img" src="" alt="">
+      <span class="game-over__span">Final score</span>
+
+      <div class="header__counters">
+        <div class="header__counters__counter">
+          <img class="header__counters__counter__img header__counters__counter__img--blue" src="" alt="">
+          <span>0</span>
+        </div>
+        <div class="header__counters__counter">
+          <img class="header__counters__counter__img header__counters__counter__img--orange" src="" alt="">
+          <span>0</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="winner display-none">
+      <img class="winner__special-img" src="" alt="">
+      <span class="winner__span">The winner is</span>
+      <!-- <h1></h1> -->
+      <h2 class="winner__h2">Orange player</h2>
+      <img class="winner__img" src="" alt="">
+      
+      <button class="header__button" id="header-button">
+        <img class="header__button__img" src="" alt="">
+        <span class="header__button__span">Back to start</span>
+      </button>
+
+    </div>
+
     <script type="module" src="/src/scss/main.scss"></script>
     <script type="module" src="/src/ts/pages/game.ts"></script>
   </body>

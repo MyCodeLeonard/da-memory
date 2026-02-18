@@ -1,35 +1,122 @@
-@use '../abstracts/mixins' as mix;
+@use "../abstracts/mixins" as mix;
 
-.game-section{
-  @include mix.flex-center-x-y;
+.game-section {
+  display: flex;
+  gap: 8px;
   height: 100vh;
   width: 100vw;
   position: relative;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  box-sizing: border-box;
+  justify-content: space-between;
+  padding: 16px;
+  background-color: grey;
+  height: fit-content;
+  margin: 24px;
+  align-items: center;
+  max-width: 880px;
+}
+
+.header__counters {
+  display: flex;
+  gap: 12px;
+  background-color: lightgray;
+  padding: 8px;
+}
+
+.header__counters__counter {
+  display: flex;
+  gap: 4px;
+
+  &__img {
+    width: 16px;
+    aspect-ratio: 1 / 1;
+
+    &--blue {
+      background-color: blue;
+    }
+
+    &--orange {
+      background-color: orange;
+    }
+  }
+}
+
+.header__current-player {
+  display: flex;
+  gap: 8px;
+
+  &__span {
+    white-space: nowrap;
+  }
+
+  &__img {
+    width: 16px;
+    aspect-ratio: 1 / 1;
+
+    &--orange {
+      background-color: orange;
+    }
+  }
+}
+
+.header__button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: 0;
+  padding: 8px 12px;
+  cursor: pointer;
+  background-color: darkcyan;
+  color: white;
+
+  &__span {
+    white-space: nowrap;
+  }
+
+  &__img {
+    width: 16px;
+    aspect-ratio: 1 / 1;
+    background-color: black;
+  }
 }
 
 .game-field {
   display: flex;
   flex-wrap: wrap;
-  width: calc(min(100vw, 100vh) - 4px);
-  padding: 2px;
+  padding: 8px;
+  gap: 8px;
+  width: 400px;
+
+  &--cardsOver16 {
+    gap: 4px;
+    padding: 4px;
+    width: 584.1px;
+  }
 }
 
-.cards16{
-  flex: 0 0 calc((100% - 4 * 4px) / 4);
+.cards16 {
+  flex: 0 0 calc((100% - 24px) / 4);
 }
 
-.cardsOver16{
-  flex: 0 0 calc((100% - 6 * 4px) / 6);
+.cardsOver16 {
+  flex: 0 0 calc((100% - 20px) / 6);
 }
 
 .card {
   @include mix.flex-center-x-y;
-  
+
   aspect-ratio: 1 / 1;
   cursor: pointer;
   border: 0;
   padding: 0;
-  margin: 2px;
 
   &__inner {
     position: relative;
@@ -37,9 +124,9 @@
     aspect-ratio: 1 / 1;
     transform-style: preserve-3d;
     transition: all 300ms ease-in-out;
-}
+  }
 
-&__face{
+  &__face {
     position: absolute;
     inset: 0;
     background-color: black;
@@ -48,14 +135,125 @@
     height: 100%;
     pointer-events: none;
 
-    &--back{
-        transform: rotateY(180deg);
-
-        background-color: red;
+    &--back {
+      transform: rotateY(180deg);
+      background-color: red;
     }
   }
 
-  &.is-flipped .card__inner{
+  &.is-flipped .card__inner {
     transform: rotateY(180deg);
   }
+}
+
+.query-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: #0000004d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.query-overlay__pop-up {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  text-align: center;
+  padding: 16px;
+  gap: 24px;
+
+  &__span {
+    font-size: 24px;
+  }
+}
+
+.query-overlay__pop-up__buttons {
+  display: flex;
+  gap: 16px;
+
+  &__button {
+    border: solid 2px transparent;
+    color: transparent;
+    padding: 12px 16px;
+    background-color: transparent;
+    font-weight: 600;
+    cursor: pointer;
+
+    &--first {
+      background-color: #66cfbc;
+      border-color: #66cfbc;
+      color: white;
+    }
+
+    &--second {
+      background-color: #eefcf9;
+      border-color: #4dd5bc;
+      color: #4dd5bc;
+    }
+  }
+}
+
+.game-over{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  flex-direction: column;
+
+  &__img{
+    height: 150px;
+    width: 600px;
+    background-color: aqua;
+  }
+
+  &__span{
+    margin-top: 120px;
+    margin-bottom: 16px;
+    font-size: 24px;
+  }
+}
+
+.winner{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  // justify-content: center;
+  background-color: white;
+  flex-direction: column;
+
+  &__special-img{
+    display: none;
+    height: 200px;
+    width: 900px;
+    background-color: red;
+    margin-bottom: 24px;
+  }
+
+  &__span{
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+
+  &__h2{
+    margin: 0;
+    font-size: 48px;
+  }
+
+  &__img{
+    width: 200px;
+    height: 280px;
+    margin-top: 48px;
+    margin-bottom: 40px;
+    background-color: orange;
+  }
+
+}
+
+.display-none {
+  display: none;
 }

@@ -169,6 +169,4 @@ function bubbling(event:Event):void{
     event.stopPropagation();
 }
 
-// selectedShuffledCards();
-// setPlayer();
 window.addEventListener('load',() => initGame());

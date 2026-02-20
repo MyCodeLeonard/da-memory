@@ -1,29 +1,78 @@
-@use '../abstracts/mixins' as mix;
-$yellow: #7f7f00;
+@use "../abstracts/mixins" as mix;
+@use "../abstracts/variables" as var;
 
-@mixin selectedImg($url: '') {
+@mixin selectedImg($url: "", $color: black) {
     background-image: url($url);
-    background-color: black;
+    background-color: $color;
     width: 300px;
     height: 300px;
     border-radius: 12px;
+
+    @include mix.responsiveMaxX(700px) {
+        position: absolute;
+        top: 80px;
+        z-index: -1;
+        width: 200px;
+        height: 200px;
+        margin-right: 32px;
+    }
 }
 
-.settings-section{
+@mixin pseudo($selector, $value) {
+  &__radio#{$selector} + &__radio-box{
+    border-width: 1px;
+    width: 14px;
+    height: 14px;
+
+    &::after {
+        opacity: $value;
+    }
+  }
+}
+
+.settings-section {
     height: 100vh;
     width: 100vw;
     box-sizing: border-box;
-    padding: 128px;
+    padding: 128px 24px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     max-width: 1440px;
     justify-self: center;
+    gap: 64px 8px;
+
+    &:has(#code-vibes-theme:checked) .settings-section__right__theme-img {
+        @include selectedImg("", green);
+    }
+
+    &:has(#gaming-theme:checked) .settings-section__right__theme-img {
+        @include selectedImg("", red);
+    }
+
+    &:has(#da-projects-theme:checked) .settings-section__right__theme-img {
+        @include selectedImg("", yellow);
+    }
+
+    &:has(#foods-theme:checked) .settings-section__right__theme-img {
+        @include selectedImg("", black);
+    }
+
+    @include mix.responsiveMaxX(700px) {
+        flex-direction: column;
+        align-items: center;
+        padding: 32px 0;
+        justify-content: flex-start;
+    }
+
+    @include mix.responsiveXY(1024px, 600px) {
+        padding: 48px 24px;
+    }
 }
 
-.settings-section-left{
+.settings-section__left {
     display: flex;
     flex-direction: column;
-    width: 200px;
+    width: 216px;
 
     &__h1 {
         position: relative;
@@ -31,18 +80,18 @@ $yellow: #7f7f00;
         padding-left: 18px;
         padding-right: 6px;
         width: fit-content;
-        
+
         &::before {
-            @include mix.befor-after($yellow);
+            @include mix.befor-after(var.$yellow);
             height: 12px;
             width: 12px;
             rotate: 45deg;
             bottom: -7px;
             left: 3px;
         }
-        
+
         &::after {
-            @include mix.befor-after($yellow);
+            @include mix.befor-after(var.$yellow);
             height: 3px;
             width: 120px;
             bottom: -3px;
@@ -51,20 +100,79 @@ $yellow: #7f7f00;
     }
 }
 
-.radio-checked {
-    &:checked + label{
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 40px;
+
+    &__title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        &__img {
+            width: 16px;
+            height: 16px;
+            background-color: black;
+        }
+
+        &__h2 {
+            margin: 0;
+            font-size: 20px;
+        }
+    }
+
+    &__option {
+        margin-left: 24px;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        margin-left: 27px;
+
+        &__radio{
+            display: none;
+        }
+
+        &__radio-box{
+            width: 12px;
+            height: 12px;
+            border: 2px solid #303131;
+            border-radius: 50%;
+            position: relative;
+
+            &::after {
+                content: "";
+                position: absolute;
+                inset: 4px;
+                border-radius: 50%;
+                background: #303131;
+                opacity: 0;
+                transition: 0.2s;
+            }
+        }
+        
+        @include pseudo(":hover", .5);
+
+        @include pseudo(":checked", 1);
+    }
+}
+
+.options__option {
+    &__radio:checked ~ &__span {
         position: relative;
+
         &::before {
-            @include mix.befor-after($yellow);
+            @include mix.befor-after(var.$yellow);
             height: 2px;
             width: 24px;
             right: -32px;
             align-self: center;
             top: 9px;
         }
-    
+
         &::after {
-            @include mix.befor-after($yellow);
+            @include mix.befor-after(var.$yellow);
             height: 8px;
             width: 8px;
             rotate: 45deg;
@@ -75,42 +183,39 @@ $yellow: #7f7f00;
     }
 }
 
-.settings-section-right{
+.settings-section__right {
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 32px;
     align-items: flex-end;
+
+    @include mix.responsiveMaxX(700px) {
+        align-items: center;
+    }
 }
 
-.settings-section:has(#code-vibes-theme:checked) .theme-img{
-    @include selectedImg('');
-}
-
-.settings-section:has(#gaming-theme:checked) .theme-img{
-    @include selectedImg('');
-}
-
-.settings-section:has(#da-projects-theme:checked) .theme-img{
-    @include selectedImg('');
-}
-
-.settings-section:has(#foods-theme:checked) .theme-img{
-    @include selectedImg('');
-}
-    
-.start-box{
+.start-box {
     display: flex;
     gap: 16px;
     align-items: center;
-    background-color: gray;
+    background-color: #f6f6f6;
     padding: 12px;
 
-    &__span{
+    flex-wrap: wrap;
+    justify-content: center;
 
+    @include mix.responsiveMaxX(700px) {
+        position: fixed;
+        bottom: 0;
+        background-color: #808080bf;
     }
 
-    &__slash{
+    // &__span{
+
+    // }
+
+    &__slash {
         width: 6px;
         background-color: yellow;
         rotate: 24deg;
@@ -118,7 +223,7 @@ $yellow: #7f7f00;
     }
 }
 
-.start-btn{
+.start-btn {
     align-self: center;
     display: flex;
     align-items: center;
@@ -130,22 +235,22 @@ $yellow: #7f7f00;
     cursor: pointer;
     transition: transform 200ms ease-in-out;
 
-    &__img{
+    &__img {
         height: 12px;
         aspect-ratio: 1 / 1;
         background-color: black;
         transition: transform 200ms ease-in-out;
     }
 
-    &__span{
+    // &__span{
 
-    }
+    // }
 
-    &:hover{
+    &:hover {
         transform: scale(1.1);
     }
 
-    &:hover &__img{
+    &:hover &__img {
         transform: rotate(-45deg);
     }
 }

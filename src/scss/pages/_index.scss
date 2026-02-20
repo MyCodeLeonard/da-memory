@@ -1,8 +1,10 @@
-.index-body{
-    background-image: url('');
+@use "../abstracts/variables" as var;
+
+.index-body {
+    background-image: url("");
 }
 
-.start-screen{
+.start-screen {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -10,39 +12,39 @@
     height: 100vh;
     width: 100vw;
 
-    >.start-screen__span{
+    // >.start-screen__span{
 
-    }
+    // }
 
-    >.start-screen__h1{
-        
-    }
+    // >.start-screen__h1{
+
+    // }
 }
 
-.to-settings{
+.to-settings {
     align-self: center;
     display: flex;
     align-items: center;
     gap: 8px;
-    background-color: #f0ea6e;
+    background-color: var.$yellow;
     border: none;
     margin: 0;
     padding: 16px;
 
-    &__img{
+    &__img {
         height: 12px;
         aspect-ratio: 1 / 1;
         background-color: black;
-        &--left{
+        &--left {
             transition: transform 300ms ease-in-out;
         }
     }
 
-    &__span{
+    // &__span{
 
-    }
+    // }
 
-    &:hover &__img--left{
+    &:hover &__img--left {
         transform: rotate(-45deg);
     }
 }

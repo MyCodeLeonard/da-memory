@@ -8,69 +8,99 @@
   </head>
   <body>
     <section class="settings-section">
-        <div class="settings-section-left">
-            <h1 class="settings-section__h1">Settings</h1>
-    
-            <div class="settions-options">
-                <h2>Game themes</h2>
-                <div>
-                    <input type="radio" checked name="game-themes" id="code-vibes-theme" class="radio-checked">
-                    <label for="code-vibes-theme">Code vibes theme</label>
-                </div>
-                <div>
-                    <input type="radio" name="game-themes" id="gaming-theme" class="radio-checked">
-                    <label for="gaming-theme">Gaming theme</label>
-                </div>
-                <div>
-                    <input type="radio" name="game-themes" id="da-projects-theme" class="radio-checked">
-                    <label for="da-projects-theme">DA Projects theme</label>
-                </div>
-                <div>
-                    <input type="radio" name="game-themes" id="foods-theme" class="radio-checked">
-                    <label for="foods-theme">Foods theme</label>
-                </div>
+
+        <div class="settings-section__left">
+
+            <h1 class="settings-section__left__h1">Settings</h1>
+
+            <div class="options">
+                <label class="options__title">
+                    <img class="options__title__img" src="" alt="">
+                    <h2 class="options__title__h2">Game themes</h2>
+                </label>
+                <label class="options__option">
+                    <input type="radio" checked name="game-themes" id="code-vibes-theme" class="options__option__radio">
+                    <div class="options__option__radio-box"></div>
+                    <span class="options__option__span">Code vibes theme</span>
+                </label>
+                <label class="options__option">
+                    <input type="radio" name="game-themes" id="gaming-theme" class="options__option__radio">
+                    <div class="options__option__radio-box"></div>
+                    <span class="options__option__span">Gaming theme</span>
+                </label>
+                <label class="options__option">
+                    <input type="radio" name="game-themes" id="da-projects-theme" class="options__option__radio">
+                    <div class="options__option__radio-box"></div>
+                    <span class="options__option__span">DA Projects theme</span>
+                </label>
+                <label class="options__option">
+                    <input type="radio" name="game-themes" id="foods-theme" class="options__option__radio">
+                    <div class="options__option__radio-box"></div>
+                    <span class="options__option__span">Foods theme</span>
+                </label>
             </div>
-            <div class="settions-options">
-                <h2>Choose player</h2>
-                <div>
-                    <input type="radio" checked name="choose-player" id="player-blue" class="radio-checked">
-                    <label for="player-blue">Blue</label>
-                </div>
-                <div>
-                    <input type="radio" name="choose-player" id="player-orange" class="radio-checked">
-                    <label for="player-orange">Orange</label>
-                </div>
+
+            <div class="options">
+                <label class="options__title">
+                    <img class="options__title__img" src="" alt="">
+                    <h2 class="options__title__h2">Choose player</h2>
+                </label>
+                <label class="options__option">
+                    <input type="radio" checked name="choose-player" id="player-blue" class="options__option__radio">
+                    <div class="options__option__radio-box"></div>
+                    <span class="options__option__span">Blue</span>
+                </label>
+                <label class="options__option">
+                    <input type="radio" name="choose-player" id="player-orange" class="options__option__radio">
+                    <div class="options__option__radio-box"></div>
+                    <span class="options__option__span">Orange</span>
+                </label>
             </div>
-            <div class="settions-options">
-                <h2>Board size</h2>
-                <div>
-                    <input type="radio" checked name="board-size" id="16-cards" class="radio-checked">
-                    <label for="16-cards">16 cards</label>
-                </div>
-                <div>
-                    <input type="radio" name="board-size" id="24-cards" class="radio-checked">
-                    <label for="24-cards">24 cards</label>
-                </div>
-                <div>
-                    <input type="radio" name="board-size" id="36-cards" class="radio-checked">
-                    <label for="36-cards">36 cards</label>
-                </div>
+
+            <div class="options">
+                <label class="options__title">
+                    <img class="options__title__img" src="" alt="">
+                    <h2 class="options__title__h2">Board size</h2>
+                </label>
+                <label class="options__option">
+                    <input type="radio" checked name="board-size" id="16-cards" class="options__option__radio">
+                    <div class="options__option__radio-box"></div>
+                    <span class="options__option__span">16 cards</span>
+                </label>
+                <label class="options__option">
+                    <input type="radio" name="board-size" id="24-cards" class="options__option__radio">
+                    <div class="options__option__radio-box"></div>
+                    <span class="options__option__span">24 cards</span>
+                </label>
+                <label class="options__option">
+                    <input type="radio" name="board-size" id="36-cards" class="options__option__radio">
+                    <div class="options__option__radio-box"></div>
+                    <span class="options__option__span">36 cards</span>
+                </label>
+
             </div>
         </div>
-        <div class="settings-section-right">
-            <div class="theme-img"></div>
+
+        <div class="settings-section__right">
+
+            <div class="settings-section__right__theme-img"></div>
+
             <div class="start-box">
                 <span class="start-box__span">Game theme</span>
                 <div class="start-box__slash"></div>
                 <span class="start-box__span">Player</span>
                 <div class="start-box__slash"></div>
                 <span class="start-box__span">Board size</span>
+
                 <button class="start-btn" id="start-game">
                     <img class="start-btn__img" src="" alt="">
                     <span class="start-btn__span">Start</span>
                 </button>
+
             </div>
+
         </div>
+
     </section>
     <script type="module" src="/src/scss/main.scss"></script>
     <script type="module" src="/src/ts/pages/settings.ts"></script>

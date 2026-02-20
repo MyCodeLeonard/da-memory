@@ -1,21 +1,33 @@
 @mixin flex-center-x-y {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 @mixin flex-center-x {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 @mixin flex-center-y {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 @mixin befor-after($color: transparent) {
-  content: "";
-  position: absolute;
-  background-color: $color;
+    content: "";
+    position: absolute;
+    background-color: $color;
+}
+
+@mixin responsiveMaxX($width) {
+    @media (max-width: $width) {
+        @content;
+    }
+}
+
+@mixin responsiveXY($width, $height) {
+    @media (width: $width) and (height: $height) {
+        @content;
+    }
 }

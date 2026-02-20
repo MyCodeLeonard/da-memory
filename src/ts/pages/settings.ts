@@ -1,4 +1,4 @@
-function init():void{
+function initSettings():void{
     setFromStorage();
     buttonEventListener();
 }
@@ -38,4 +38,4 @@ function valuesTransfer():void{
     }
 }
 
-window.addEventListener('load', init);
+window.addEventListener('load', initSettings);

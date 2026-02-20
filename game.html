@@ -13,17 +13,17 @@
         <div class="header__counters">
           <div class="header__counters__counter">
             <img class="header__counters__counter__img header__counters__counter__img--blue" src="" alt="">
-            <span>0</span>
+            <span id="counter-blue">0</span>
           </div>
           <div class="header__counters__counter">
             <img class="header__counters__counter__img header__counters__counter__img--orange" src="" alt="">
-            <span>0</span>
+            <span id="counter-orange">0</span>
           </div>
         </div>
 
         <div class="header__current-player">
           <span class="header__current-player__span">Current player:</span>
-          <img class="header__current-player__img header__current-player__img--orange" src="" alt="">
+          <img id="currentPlayer" class="header__current-player__img" src="" alt="">
         </div>
 
         <button class="header__button" id="header-button">
@@ -46,7 +46,7 @@
       </div>
     </div>
 
-    <div class="game-over display-none">
+    <div id="game-over" class="game-over display-none">
       <!-- <h1 class="game-over__h1">Game over</h1> -->
       <img class="game-over__img" src="" alt="">
       <span class="game-over__span">Final score</span>
@@ -54,23 +54,23 @@
       <div class="header__counters">
         <div class="header__counters__counter">
           <img class="header__counters__counter__img header__counters__counter__img--blue" src="" alt="">
-          <span>0</span>
+          <span id="game-over-counter-blue">0</span>
         </div>
         <div class="header__counters__counter">
           <img class="header__counters__counter__img header__counters__counter__img--orange" src="" alt="">
-          <span>0</span>
+          <span id="game-over-counter-orange">0</span>
         </div>
       </div>
     </div>
 
-    <div class="winner display-none">
+    <div id="winner" class="winner display-none">
       <img class="winner__special-img" src="" alt="">
       <span class="winner__span">The winner is</span>
       <!-- <h1></h1> -->
-      <h2 class="winner__h2">Orange player</h2>
-      <img class="winner__img" src="" alt="">
+      <h2 id="winner-title" class="winner__h2">Orange player</h2>
+      <img id="winner-img" class="winner__img" src="" alt="">
       
-      <button class="header__button" id="header-button">
+      <button class="header__button" id="winner-button">
         <img class="header__button__img" src="" alt="">
         <span class="header__button__span">Back to start</span>
       </button>

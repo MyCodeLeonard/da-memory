@@ -1,9 +1,5 @@
 @use "../abstracts/variables" as var;
 
-.index-body {
-    background-image: url("");
-}
-
 .start-screen {
     display: flex;
     flex-direction: column;
@@ -11,40 +7,93 @@
     align-items: center;
     height: 100vh;
     width: 100vw;
+    background-color: #303131;
+    background-image: url('/assets/img/index_stadia_controller.png');
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    background-size: 320px;
 
-    // >.start-screen__span{
-
-    // }
-
-    // >.start-screen__h1{
-
-    // }
+    &__span{
+        font-family: "Almarai";
+        font-weight: 400;
+        font-size: clamp(20px, 3.33vw, 48px);
+        color: white;
+    }
+    
+    &__h1{
+        font-family: "RedRose";
+        font-weight: 700;
+        font-size: clamp(40px, 9.722vw, 140px);
+        margin: 0;
+        color: white;
+    }
 }
 
-.to-settings {
+.button {
     align-self: center;
     display: flex;
     align-items: center;
-    gap: 8px;
     background-color: var.$yellow;
     border: none;
     margin: 0;
-    padding: 16px;
+    gap: 20px;
+    padding: 24px;
+    text-decoration: none;
+    transition: all 200ms ease-in-out;
 
-    &__img {
-        height: 12px;
-        aspect-ratio: 1 / 1;
-        background-color: black;
-        &--left {
-            transition: transform 300ms ease-in-out;
-        }
+    &--positionB30P {
+        position: absolute;
+        bottom: 22.3%;
     }
 
-    // &__span{
+    &__img--left {
+        transition: transform 200ms ease-in-out;
+    }
 
-    // }
+    &__span{
+        font-family: "RedRose";
+        font-weight: 700;
+        color: #303131;
+        font-size: clamp(32px, 5vw, 40px);
+    }
 
-    &:hover &__img--left {
-        transform: rotate(-45deg);
+    &:hover {
+        padding: 26px 32px;
+        padding: 27px 32px;
+        transform: translateY(2px);
+        
+        .button{
+            &__img--left {
+                transform: rotate(-25.77deg) scale(1.1);
+            }
+    
+            &__images__img--no-hover{
+                opacity: 0;
+            }
+    
+            &__images__img--hover{
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.button__images{
+    position: relative;
+    display: flex;
+    width: 40px;
+    height: 30px;
+
+    &__img {
+        position: absolute;
+        inset: 0;
+        transition: opacity 200ms ease-in-out;
+        object-fit: contain;
+        align-self: center;
+        justify-self: center;
+    
+        &--hover{
+            opacity: 0;
+        }
     }
 }

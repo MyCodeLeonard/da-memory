@@ -1,5 +1,3 @@
-@use "../abstracts/variables" as var;
-
 .start-screen {
     display: flex;
     flex-direction: column;
@@ -26,74 +24,5 @@
         font-size: clamp(40px, 9.722vw, 140px);
         margin: 0;
         color: white;
-    }
-}
-
-.button {
-    align-self: center;
-    display: flex;
-    align-items: center;
-    background-color: var.$yellow;
-    border: none;
-    margin: 0;
-    gap: 20px;
-    padding: 24px;
-    text-decoration: none;
-    transition: all 200ms ease-in-out;
-
-    &--positionB30P {
-        position: absolute;
-        bottom: 22.3%;
-    }
-
-    &__img--left {
-        transition: transform 200ms ease-in-out;
-    }
-
-    &__span{
-        font-family: "RedRose";
-        font-weight: 700;
-        color: #303131;
-        font-size: clamp(32px, 5vw, 40px);
-    }
-
-    &:hover {
-        padding: 26px 32px;
-        padding: 27px 32px;
-        transform: translateY(2px);
-        
-        .button{
-            &__img--left {
-                transform: rotate(-25.77deg) scale(1.1);
-            }
-    
-            &__images__img--no-hover{
-                opacity: 0;
-            }
-    
-            &__images__img--hover{
-                opacity: 1;
-            }
-        }
-    }
-}
-
-.button__images{
-    position: relative;
-    display: flex;
-    width: 40px;
-    height: 30px;
-
-    &__img {
-        position: absolute;
-        inset: 0;
-        transition: opacity 200ms ease-in-out;
-        object-fit: contain;
-        align-self: center;
-        justify-self: center;
-    
-        &--hover{
-            opacity: 0;
-        }
     }
 }

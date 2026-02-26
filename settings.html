@@ -19,7 +19,7 @@
                     <h2 class="options__title__h2">Game themes</h2>
                 </div>
                 <label class="options__option">
-                    <input type="radio" checked name="game-themes" id="code-vibes-theme" class="options__option__radio">
+                    <input type="radio" name="game-themes" id="code-vibes-theme" class="options__option__radio">
                     <div class="options__option__radio-box"></div>
                     <span class="options__option__span">Code vibes theme</span>
                 </label>
@@ -46,7 +46,7 @@
                     <h2 class="options__title__h2">Choose player</h2>
                 </div>
                 <label class="options__option">
-                    <input type="radio" checked name="choose-player" id="player-blue" class="options__option__radio">
+                    <input type="radio" name="choose-player" id="player-blue" class="options__option__radio">
                     <div class="options__option__radio-box"></div>
                     <span class="options__option__span">Blue</span>
                 </label>
@@ -63,7 +63,7 @@
                     <h2 class="options__title__h2">Board size</h2>
                 </div>
                 <label class="options__option">
-                    <input type="radio" checked name="board-size" id="16-cards" class="options__option__radio">
+                    <input type="radio" name="board-size" id="16-cards" class="options__option__radio">
                     <div class="options__option__radio-box"></div>
                     <span class="options__option__span">16 cards</span>
                 </label>
@@ -81,26 +81,28 @@
             </div>
         </div>
 
-        <div class="settings-section__right">
-
-            <div class="settings-section__right__theme-img"></div>
-
-            <div class="start-box">
-                <span class="start-box__span">Game theme</span>
-                <div class="start-box__slash"></div>
-                <span class="start-box__span">Player</span>
-                <div class="start-box__slash"></div>
-                <span class="start-box__span">Board size</span>
-
-                <button id="start-game" class="button button--settings">
-                    <img class="button__img" src="/assets/img/button-play.png" alt=""> <!-- button__img--left-settings -->
-                    <span class="button__span button__span--settings">Start</span>
-                </button>
-
+        <div class="settings-section__right__over-box">
+            <div id="right-box" class="settings-section__right">
+    
+                <div class="settings-section__right__theme-img"></div>
+    
+                <div id="start-box" class="start-box">
+                    <span id="start-box-game-themes" class="start-box__span">Game theme</span>
+                    <div class="start-box__slash"></div>
+                    <span id="start-box-player" class="start-box__span">Player</span>
+                    <div class="start-box__slash"></div>
+                    <span id="start-box-board-size" class="start-box__span">Board size</span>
+    
+                    <button disabled id="start-game" class="button button--settings">
+                        <img class="button__img" src="/assets/img/button-play.png" alt="">
+                        <span class="button__span button__span--settings">Start</span>
+                        <div class="button__veil"></div>
+                    </button>
+                </div>
+    
             </div>
-
         </div>
-
+        
     </section>
     <script type="module" src="/src/scss/main.scss"></script>
     <script type="module" src="/src/ts/pages/settings.ts"></script>

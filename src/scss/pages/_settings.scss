@@ -4,20 +4,6 @@
 @mixin selectedImg($url: "", $color: transparent) {
     background-image: url($url);
     background-color: $color;
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 460px;
-    aspect-ratio: 115 / 103;
-    border-radius: 16px;
-    margin-right: 16px;
-
-    @include mix.responsiveMaxX(900px) {
-        position: absolute;
-        top: 80px;
-        z-index: -1;
-        width: 200px;
-        margin-right: 0px;
-    }
 }
 
 @mixin pseudo($selector, $value) {
@@ -71,6 +57,22 @@
 
     &:has(#foods-theme:hover) .settings-section__right__theme-img {
         @include selectedImg("/assets/img/foods-theme.png", #f0812c);
+    }
+
+    &:has(.options__option__radio[name="game-themes"]:checked) .start-box__slash:nth-of-type(1),
+    &:has(.options__option__radio[name="choose-player"]:checked) .start-box__slash:nth-of-type(2){
+        width: 4px;
+
+        &::after{
+            content: "";
+            position: absolute;
+            background-color: #f0ea6e;
+            height: 12px;
+            width: 12px;
+            rotate: 45deg;
+            bottom: 0;
+            left: -4px;
+        }
     }
 
     @include mix.responsiveMaxX(900px) {
@@ -220,13 +222,38 @@
     }
 }
 
+.settings-section__right__over-box{
+    display: flex;
+    justify-content: flex-end;
+    width: 680px;
+
+    @include mix.responsiveMaxX(900px) {
+        width: auto;
+    }
+}
+
 .settings-section__right {
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 32px;
     align-items: flex-end;
-    width: 532.36px;
+
+    &__theme-img{
+        background-size: contain;
+        background-repeat: no-repeat;
+        width: 460px;
+        aspect-ratio: 115 / 103;
+        border-radius: 16px;
+    
+        @include mix.responsiveMaxX(900px) {
+            position: absolute;
+            top: 80px;
+            z-index: -1;
+            width: 200px;
+            margin-right: 0px;
+        }
+    }
 
     @include mix.responsiveMaxX(900px) {
         align-items: center;
@@ -239,8 +266,6 @@
     align-items: center;
     background-color: #f6f6f6;
     padding: 12px;
-
-    flex-wrap: wrap;
     justify-content: center;
     align-self: start;
 
@@ -250,12 +275,14 @@
         bottom: 0;
         background-color: #808080bf;
         align-self: auto;
+        flex-wrap: wrap;
     }
 
     &__span{
         font-family: 'almarai';
         font-weight: 400;
         font-size: clamp(16px, 1.389vw, 20px);
+        white-space: nowrap
     }
 
     &__slash {

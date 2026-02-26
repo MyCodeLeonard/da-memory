@@ -11,12 +11,12 @@
     border-radius: 16px;
     margin-right: 16px;
 
-    @include mix.responsiveMaxX(700px) {
+    @include mix.responsiveMaxX(900px) {
         position: absolute;
         top: 80px;
         z-index: -1;
         width: 200px;
-        margin-right: 32px;
+        margin-right: 0px;
     }
 }
 
@@ -57,7 +57,23 @@
         @include selectedImg("/assets/img/foods-theme.png", #f0812c);
     }
 
-    @include mix.responsiveMaxX(700px) {
+    &:has(#code-vibes-theme:hover) .settings-section__right__theme-img {
+        @include selectedImg("/assets/img/code-vibes-theme.png", #4acfb6);
+    }
+
+    &:has(#gaming-theme:hover) .settings-section__right__theme-img {
+        @include selectedImg("/assets/img/gaming-theme.png", #981c5a);
+    }
+
+    &:has(#da-projects-theme:hover) .settings-section__right__theme-img {
+        @include selectedImg("/assets/img/da-projects-theme.png", #1d708e);
+    }
+
+    &:has(#foods-theme:hover) .settings-section__right__theme-img {
+        @include selectedImg("/assets/img/foods-theme.png", #f0812c);
+    }
+
+    @include mix.responsiveMaxX(900px) {
         flex-direction: column;
         align-items: center;
         padding: 32px 0;
@@ -73,13 +89,17 @@
     display: flex;
     flex-direction: column;
 
+    @include mix.responsiveMaxX(900px) {
+        width: 187px;
+    }
+
     &__h1 {
         position: relative;
         margin: 0;
         padding: 0px 12.74px;
         font-family: 'RedRose';
         font-weight: 700;
-        font-size: 54px;
+        font-size: clamp(32px, 3.75vw, 54px);
 
         &::before {
             @include mix.befor-after(var.$yellow);
@@ -93,7 +113,7 @@
         &::after {
             @include mix.befor-after(var.$yellow);
             height: 4px;
-            width: 251px;
+            width: clamp(156px, 17.436vw, 251px);
             bottom: -2px;
             left: 0px;
         }
@@ -104,7 +124,7 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
-    margin-top: 40px;
+    margin-top: clamp(20px, 2.778vw, 40px);
 
     &__title {
         display: flex;
@@ -118,10 +138,9 @@
 
         &__h2 {
             margin: 0;
-            font-size: 20px;
             font-family: 'almarai';
             font-weight: 700;
-            font-size: 24px;
+            font-size: clamp(20px, 1.389vw, 24px);
         }
     }
 
@@ -129,9 +148,14 @@
         display: flex;
         gap: 12px;
         align-items: center;
-        margin-left: 44px;
+        margin-left: clamp(16px, 3.056vw, 44px);
         height: 24px;
         cursor: pointer;
+        width: max-content;
+
+        @include mix.responsiveMaxX(900px) {
+            background-color: #ffffffb3;
+        }
 
         &__radio{
             display: none;
@@ -159,11 +183,7 @@
         &__span{
             font-family: 'almarai';
             font-weight: 400;
-            font-size: 20px;
-
-            @include mix.responsiveMaxX(700px){
-                background-color: #ffffffb3;
-            }
+            font-size: clamp(16px, 1.389vw, 20px);
         }
 
         @include pseudo(":hover", .5);
@@ -194,6 +214,10 @@
             right: -56px;
         }
     }
+
+    &:has(.options__option__radio:checked) {
+        cursor: default;
+    }
 }
 
 .settings-section__right {
@@ -204,7 +228,7 @@
     align-items: flex-end;
     width: 532.36px;
 
-    @include mix.responsiveMaxX(700px) {
+    @include mix.responsiveMaxX(900px) {
         align-items: center;
     }
 }
@@ -221,54 +245,23 @@
     align-self: start;
 
 
-    @include mix.responsiveMaxX(700px) {
+    @include mix.responsiveMaxX(900px) {
         position: fixed;
         bottom: 0;
         background-color: #808080bf;
+        align-self: auto;
     }
 
     &__span{
         font-family: 'almarai';
         font-weight: 400;
-        font-size: 20px;
+        font-size: clamp(16px, 1.389vw, 20px);
     }
 
     &__slash {
-        width: 8px;
+        width: clamp(4px, 0.556vw, 8px);
+        height: clamp(40px, 3.889vw, 56px);
         background-color: var.$yellow;
         rotate: 20deg;
-        height: 56px;
     }
 }
-
-// .start-btn {
-//     align-self: center;
-//     display: flex;
-//     align-items: center;
-//     gap: 8px;
-//     background-color: #f0ea6e;
-//     border: none;
-//     margin: 0;
-//     padding: 8px 16px;
-//     cursor: pointer;
-//     transition: transform 200ms ease-in-out;
-
-//     &__img {
-//         height: 12px;
-//         aspect-ratio: 1 / 1;
-//         background-color: black;
-//         transition: transform 200ms ease-in-out;
-//     }
-
-//     // &__span{
-
-//     // }
-
-//     &:hover {
-//         transform: scale(1.1);
-//     }
-
-//     &:hover &__img {
-//         transform: rotate(-45deg);
-//     }
-// }

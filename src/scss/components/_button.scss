@@ -8,24 +8,49 @@
     border: none;
     margin: 0;
     gap: 20px;
-    padding: 24px;
     text-decoration: none;
     transition: all 200ms ease-in-out;
 
-    &--positionB30P {
+    &--index{
         position: absolute;
         bottom: 22.3%;
+        padding: 24px;
+
+        &:hover{
+            padding: 27px 32px;
+            transform: translateY(2px);
+
+            .button{
+                &__img {
+                    transform: rotate(-25.77deg) scale(1.1);
+                }
+
+                &__images__img--no-hover{
+                    opacity: 0;
+                }
+            
+                &__images__img--hover{
+                    opacity: 1;
+                }
+            }
+        }
     }
 
-    &--settings-page{
-        padding: 14px 20px !important;
+    &--settings{
+        padding: 14px 20px;
+
+        &:hover{
+            transform: scale(1.1);
+            margin-right: 8px;
+            margin-left: 8px;
+
+            .button__img{
+                transform: rotate(-10deg) scale(1.1);
+            }
+        }
     }
 
-    &__img--left {
-        transition: transform 200ms ease-in-out;
-    }
-
-    &__img--left-settings-page{
+    &__img {
         transition: transform 200ms ease-in-out;
     }
 
@@ -33,42 +58,15 @@
         font-family: "RedRose";
         font-weight: 700;
         color: #303131;
-        font-size: clamp(32px, 5vw, 40px);
 
-        &--settings-page{
-            font-size: 20px;
+        &--index{
+            font-size: clamp(32px, 5vw, 40px);
+        }
+
+        &--settings{
+            font-size: clamp(16px, 1.389vw, 20px);
         }
     }
-
-    &:hover {
-        padding: 27px 32px;
-        transform: translateY(2px);
-
-        .button{
-            &__img--left {
-                transform: rotate(-25.77deg) scale(1.1);
-            }
-
-            &__img--left-settings-page{
-                transform: rotate(-10deg) scale(1.1);
-            }
-            
-            &__images__img--no-hover{
-                opacity: 0;
-            }
-            
-            &__images__img--hover{
-                opacity: 1;
-            }
-
-        }
-    }
-}
-
-.button--settings-pageT:hover{
-    transform: scale(1.1);
-    margin-right: 8px;
-    margin-left: 8px;
 }
 
 .button__images{

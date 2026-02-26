@@ -10,6 +10,13 @@
     gap: 20px;
     text-decoration: none;
     transition: all 200ms ease-in-out;
+    cursor: pointer;
+    position: relative;
+
+    &:disabled{
+        cursor: not-allowed;
+        background-color: #dbdbd6;
+    }
 
     &--index{
         position: absolute;
@@ -39,7 +46,7 @@
     &--settings{
         padding: 14px 20px;
 
-        &:hover{
+        &:not(:disabled):hover{
             transform: scale(1.1);
             margin-right: 8px;
             margin-left: 8px;
@@ -66,6 +73,17 @@
         &--settings{
             font-size: clamp(16px, 1.389vw, 20px);
         }
+    }
+
+    &:not(:disabled) > &__veil{
+        display: none;
+    }
+
+    &:disabled > &__veil{
+        display: flex;
+        position: absolute;
+        inset: 0;
+        background-color: #dbdbd6a1;
     }
 }
 

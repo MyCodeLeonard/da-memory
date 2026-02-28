@@ -12,8 +12,10 @@ const overlay: HTMLElement | null = document.getElementById('query-overlay');
 
 let numberOfCards:number = Number(isBoardSize?.match(/\d+/));
 
-let cardsArray: string[] = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+let cardsArray: string[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18'];
 let selectedShuffledCardsArray: string[] = [];
+
+let theme: string;
 
 let currentPlayer: 'player-blue' | 'player-orange'
 let counterBlue: number = 0;
@@ -38,10 +40,14 @@ function selectedShuffledCards(): void {
 function initGame():void{
     selectedShuffledCards();
     setPlayer();
+    setTheme();
 
     eventListeners();
     setCurrentPlayer();
+    setCurrentTheme();
     generateCards();
+
+    test();
 }
 
 function eventListeners():void{
@@ -53,25 +59,93 @@ function eventListeners():void{
     if(overlay) overlay.addEventListener('click', closeOverlay);
 }
 
-function setPlayer(){
+function setTheme():void{
+    if(isGameThemes) theme = isGameThemes;
+}
+
+function setCurrentTheme():void{
+    document.getElementById('game-section')?.classList.add(`game-section--${theme}`);
+
+    const blueLable = document.getElementsByClassName('header__counters__counter__img--blue')[0] as HTMLImageElement | null;
+    if(blueLable) blueLable.src =`/assets/img/${theme}-player-blue.png`;
+
+    const orangeLable = document.getElementsByClassName('header__counters__counter__img--orange')[0] as HTMLImageElement | null;
+    if(orangeLable) orangeLable.src =`/assets/img/${theme}-player-orange.png`;
+
+    if(theme == 'code-vibes-theme') {
+        document.getElementById('counter-blue-name')?.classList.remove('display-none');
+        document.getElementById('counter-orange-name')?.classList.remove('display-none');
+
+        document.getElementById('counter-blue')?.classList.add('header__counters__counter_span--font-comfortaa');
+        document.getElementById('counter-orange')?.classList.add('header__counters__counter_span--font-comfortaa');
+    }
+
+    document.getElementsByClassName('header')[0].classList.add(`header--${theme}`);
+    document.getElementsByClassName('header__counters')[0].classList.add(`header__counters--${theme}`);
+    document.getElementsByClassName('header__current-player')[0].classList.add(`header__current-player--${theme}`);
+    document.getElementsByClassName('header__current-player__span')[0].classList.add(`header__current-player__span--${theme}`);
+    document.getElementsByClassName('header__button')[0].classList.add(`header__button--${theme}`);
+
+    const headerButtonIcon = document.getElementById('header-button-icon') as HTMLImageElement | null;
+    if((theme == 'code-vibes-theme' || theme == 'gaming-theme') && headerButtonIcon) headerButtonIcon.src = `/assets/img/exit-game.png`;
+
+    document.getElementsByClassName('header__button__span')[0].classList.add(`header__button__span--${theme}`);
+
+    document.getElementsByClassName('query-overlay__pop-up')[0].classList.add(`query-overlay__pop-up--${theme}`);
+    document.getElementsByClassName('query-overlay__pop-up__span')[0].classList.add(`query-overlay__pop-up__span--${theme}`);
+    document.getElementsByClassName('query-overlay__pop-up__buttons__button--first')[0].classList.add(`query-overlay__pop-up__buttons__button--first-${theme}`);
+    document.getElementsByClassName('query-overlay__pop-up__buttons__button--second')[0].classList.add(`query-overlay__pop-up__buttons__button--second-${theme}`);
+}
+
+function setPlayer():void{
     if(isChoosePlayer && isChoosePlayer == "player-blue" || isChoosePlayer == "player-orange" ) currentPlayer = isChoosePlayer
 }
 
-function setCurrentPlayer(){
-    document.getElementById('currentPlayer')?.classList.remove('header__current-player__img--blue', 'header__current-player__img--orange');
+function setCurrentPlayer():void{
+    const currentPlayerIcon = document.getElementById('currentPlayer') as HTMLImageElement | null;
+    if(currentPlayerIcon) currentPlayerIcon.src = `/assets/img/${theme}-${currentPlayer}.png`
 
-    if(currentPlayer == 'player-blue'){
-        document.getElementById('currentPlayer')?.classList.add('header__current-player__img--blue');
-    } 
 
-    if(currentPlayer == 'player-orange'){
-        document.getElementById('currentPlayer')?.classList.add('header__current-player__img--orange');
-    } 
+
+    // document.getElementById('currentPlayer')?.classList.remove('header__current-player__img--blue', 'header__current-player__img--orange');
+
+    // if(currentPlayer == 'player-blue'){
+    //     document.getElementById('currentPlayer')?.classList.add('header__current-player__img--blue');
+    // } 
+
+    // if(currentPlayer == 'player-orange'){
+    //     document.getElementById('currentPlayer')?.classList.add('header__current-player__img--orange');
+    // } 
+}
+
+function test():void{
+    if(localStorage.getItem('gameThemes') == 'code-vibes-theme'){
+        if(localStorage.getItem('boardSize') == '16-cards') gameField?.classList.add('game-field--code-vibes-theme-cards16');
+        if(localStorage.getItem('boardSize') == '24-cards') gameField?.classList.add('game-field--code-vibes-theme-cards24');
+        if(localStorage.getItem('boardSize') == '36-cards') gameField?.classList.add('game-field--code-vibes-theme-cards36');
+    }
+
+    if(localStorage.getItem('gameThemes') == 'gaming-theme'){
+        if(localStorage.getItem('boardSize') == '16-cards') gameField?.classList.add('game-field--gaming-theme-cards16');
+        if(localStorage.getItem('boardSize') == '24-cards') gameField?.classList.add('game-field--gaming-theme-cards24');
+        if(localStorage.getItem('boardSize') == '36-cards') gameField?.classList.add('game-field--gaming-theme-cards36');
+    }
+
+    if(localStorage.getItem('gameThemes') == 'da-projects-theme'){
+        if(localStorage.getItem('boardSize') == '16-cards') gameField?.classList.add('game-field--da-projects-theme-cards16');
+        if(localStorage.getItem('boardSize') == '24-cards') gameField?.classList.add('game-field--da-projects-theme-cards24');
+        if(localStorage.getItem('boardSize') == '36-cards') gameField?.classList.add('game-field--da-projects-theme-cards36');
+    }
+
+    if(localStorage.getItem('gameThemes') == 'foods-theme'){
+        if(localStorage.getItem('boardSize') == '16-cards') gameField?.classList.add('game-field--foods-theme-cards16');
+        if(localStorage.getItem('boardSize') == '24-cards') gameField?.classList.add('game-field--foods-theme-cards24');
+        if(localStorage.getItem('boardSize') == '36-cards') gameField?.classList.add('game-field--foods-theme-cards36');
+    }
 }
 
 function generateCards():void{
     if(gameField && isGameThemes && isChoosePlayer && isBoardSize){
-        if(numberOfCards > 16) gameField.classList.add('game-field--cardsOver16');
 
         for (let index = 0; index < numberOfCards; index++) {
             const card: HTMLButtonElement = document.createElement('button');
@@ -130,25 +204,24 @@ function generateCards():void{
                 }
             });
 
-            card.dataset.pair = selectedShuffledCardsArray[index];
+            let theme = localStorage.getItem('gameThemes');
+            card.dataset.pair = theme+'-front-'+selectedShuffledCardsArray[index];
             card.dataset.revealed = 'false';
 
-            if(numberOfCards == 16) card.classList.add('cards16');
-            else card.classList.add('cardsOver16')
             card.classList.add('card');
-            card.innerHTML = '<div class="card__inner"><img class="card__face card__face--back" src="assets/img/typescript.svg" alt=""><img class="card__face card__face--front" src="assets/img/vite.svg" alt=""></div>'
+            card.innerHTML = `<div class="card__inner card__inner--xy-size-${theme}"><img class="card__face card__face--front" src="assets/img/${card.dataset.pair}.png" alt=""><img class="card__face card__face--back" src="assets/img/${theme}-back.png" alt=""></div>`
             gameField.append(card);
         }
     }
     else window.location.href = "/settings";
 }
 
-function counterUP(player:string){
+function counterUP(player:string):void{
     const counterBlueSpan:HTMLSpanElement | null = document.getElementById('counter-blue');
     const counterOrangeSpan:HTMLSpanElement | null = document.getElementById('counter-orange');
     if(player == 'blue'){
         counterBlue++
-        if(counterBlueSpan) counterBlueSpan.textContent = String(counterBlue);
+        if(counterBlueSpan)counterBlueSpan.textContent = String(counterBlue);   
     }
 
     if(player == 'orange'){

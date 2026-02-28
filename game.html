@@ -7,17 +7,19 @@
     <title>TS-Memory</title>
   </head>
   <body>
-    <section class="game-section">
+    <section id="game-section" class="game-section">
       <header class="header">
 
         <div class="header__counters">
           <div class="header__counters__counter">
             <img class="header__counters__counter__img header__counters__counter__img--blue" src="" alt="">
-            <span id="counter-blue">0</span>
+            <span id="counter-blue-name" class="display-none header__counters__counter_span header__counters__counter_span--blue">Blue</span>
+            <span id="counter-blue" class="header__counters__counter_span header__counters__counter_span--blue">0</span>
           </div>
           <div class="header__counters__counter">
             <img class="header__counters__counter__img header__counters__counter__img--orange" src="" alt="">
-            <span id="counter-orange">0</span>
+            <span id="counter-orange-name" class="display-none header__counters__counter_span header__counters__counter_span--orange">Orange</span>
+            <span id="counter-orange" class="header__counters__counter_span header__counters__counter_span--orange">0</span>
           </div>
         </div>
 
@@ -26,10 +28,12 @@
           <img id="currentPlayer" class="header__current-player__img" src="" alt="">
         </div>
 
-        <button class="header__button" id="header-button">
-          <img class="header__button__img" src="" alt="">
-          <span class="header__button__span">Exit game</span>
-        </button>
+        <div class="header__button__div">
+          <button class="header__button" id="header-button">
+            <img id="header-button-icon" class="header__button__img" src="" alt="">
+            <span class="header__button__span">Exit game</span>
+          </button>
+        </div>
 
       </header>
 

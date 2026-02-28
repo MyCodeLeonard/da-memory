@@ -2,7 +2,7 @@ function initSettings():void{
     setFromStorage();
     buttonEventListener();
     startBoxSelect();
-    setTimeout(test, 200);
+    setTimeout(sizeQuery, 200);
     
     document.querySelectorAll('.options__option__radio').forEach(element => {
         element.addEventListener('change', startBoxSelect);
@@ -49,7 +49,7 @@ function startBoxSelect(){
     if(startBoxPlayer) startBoxPlayer.textContent = playerContent;
     if(startBoxBoardSize) startBoxBoardSize.textContent = boardSizeContent;
 
-    test();
+    sizeQuery();
 }
 
 function gameThemeContentSelect():string {
@@ -98,11 +98,11 @@ function startGame(){
     if(valuesTransfer()) window.location.href = "/game";
 }
 
-function test(){
+function sizeQuery(){
     const rightBox = document.getElementById('right-box');
     const startBox = document.getElementById('start-box');
     if(rightBox && startBox) rightBox.style.width = `${startBox.clientWidth}px`;
 }
 
 window.addEventListener('load', initSettings);
-window.addEventListener('resize', () => {if(window.innerWidth > 900) test()});
+window.addEventListener('resize', () => {if(window.innerWidth > 900) sizeQuery()});

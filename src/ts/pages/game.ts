@@ -93,6 +93,8 @@ function setCurrentTheme():void{
 
     document.getElementsByClassName('query-overlay__pop-up')[0].classList.add(`query-overlay__pop-up--${theme}`);
     document.getElementsByClassName('query-overlay__pop-up__span')[0].classList.add(`query-overlay__pop-up__span--${theme}`);
+    document.getElementsByClassName('query-overlay__pop-up__buttons__button')[0].classList.add(`query-overlay__pop-up__buttons__button--${theme}`);
+    document.getElementsByClassName('query-overlay__pop-up__buttons__button')[1].classList.add(`query-overlay__pop-up__buttons__button--${theme}`);
     document.getElementsByClassName('query-overlay__pop-up__buttons__button--first')[0].classList.add(`query-overlay__pop-up__buttons__button--first-${theme}`);
     document.getElementsByClassName('query-overlay__pop-up__buttons__button--second')[0].classList.add(`query-overlay__pop-up__buttons__button--second-${theme}`);
 }
@@ -104,18 +106,6 @@ function setPlayer():void{
 function setCurrentPlayer():void{
     const currentPlayerIcon = document.getElementById('currentPlayer') as HTMLImageElement | null;
     if(currentPlayerIcon) currentPlayerIcon.src = `/assets/img/${theme}-${currentPlayer}.png`
-
-
-
-    // document.getElementById('currentPlayer')?.classList.remove('header__current-player__img--blue', 'header__current-player__img--orange');
-
-    // if(currentPlayer == 'player-blue'){
-    //     document.getElementById('currentPlayer')?.classList.add('header__current-player__img--blue');
-    // } 
-
-    // if(currentPlayer == 'player-orange'){
-    //     document.getElementById('currentPlayer')?.classList.add('header__current-player__img--orange');
-    // } 
 }
 
 function test():void{

@@ -334,9 +334,13 @@
             &--code-vibes-theme{
                 font-family: 'RedRose';
                 font-weight: 700;
-                font-size: 32px;
+                font-size: clamp(20px, 2.22vw, 32px);
                 color: #303131;
                 width: 24ch;
+
+                @include mix.responsiveMaxX(430px) {
+                    width: auto;
+                }
             }
         }
     }
@@ -348,6 +352,10 @@
 
     &__button {
         cursor: pointer;
+        
+        &--code-vibes-theme{
+            font-size: clamp(16px, 1.389vw, 20px);
+        }
 
         &--first {
             &-code-vibes-theme{
@@ -355,7 +363,6 @@
                 border: solid 2px #66cfbc;
                 color: white;
                 padding: 16px 24px;
-                font-size: 20px;
                 font-weight: 600;
             }
         }
@@ -366,7 +373,6 @@
                 border: solid 2px #4dd5bc;
                 color: #4dd5bc;
                 padding: 16px 24px;
-                font-size: 20px;
                 font-weight: 600;
             }
             

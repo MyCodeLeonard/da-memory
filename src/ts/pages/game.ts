@@ -208,7 +208,7 @@ function generateCards():void{
             card.dataset.pair = theme+'-front-'+selectedShuffledCardsArray[index];
             card.dataset.revealed = 'false';
 
-            card.classList.add('card');
+            card.classList.add('card', `card--${theme}`);
             card.innerHTML = `<div class="card__inner card__inner--xy-size-${theme}"><img class="card__face card__face--front" src="assets/img/${card.dataset.pair}.png" alt=""><img class="card__face card__face--back" src="assets/img/${theme}-back.png" alt=""></div>`
             gameField.append(card);
         }

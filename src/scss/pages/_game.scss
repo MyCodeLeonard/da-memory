@@ -333,6 +333,7 @@
 
     &--gaming-theme[data-revealed="true"]::before {
         border: 3px solid #ED1B76;
+        border-radius: 12px;
     }
 
     &--da-projects-theme[data-revealed="true"]::before {

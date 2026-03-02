@@ -59,6 +59,7 @@ function setCurrentTheme():void {
         document.getElementById('counter-blue-name')?.classList.remove('display-none');
         document.getElementById('counter-orange-name')?.classList.remove('display-none');
         overSelectorAddClass('.', 'header__button__span', `header__button__span-name--${gameThemes}`);
+        document.getElementById('confetti')?.classList.remove('display-none');
     } 
     
     headerAddClass();
@@ -149,7 +150,7 @@ function createCard(index:number){
     card.innerHTML = `<div class="card__inner card__inner--xy-size-${gameThemes}"><img class="card__face card__face--front" src="assets/img/${card.dataset.pair}.png" alt=""><img class="card__face card__face--back" src="assets/img/${gameThemes}-back.png" alt=""></div>`
     
     overSelectorAddClass('.', 'card__face--front', `card__face--front-${gameThemes}`);
-    
+
     card.addEventListener('click', () => {
         if(document.querySelectorAll(".is-flipped[data-revealed = 'false']").length <2) revealTwoCards(card);
         if(counterBlue + counterOrange == numberOfCards/2) allCardsRevealed();

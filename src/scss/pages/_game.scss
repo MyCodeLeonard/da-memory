@@ -6,10 +6,14 @@
     position: relative;
     flex-direction: column;
     align-items: center;
+    gap: 54px;
 
     &--code-vibes-theme{
         background-color: #303131;
-        gap: 54px;
+    }
+
+    &--gaming-theme{
+        background-color: #294F60;
     }
 }
 
@@ -24,19 +28,27 @@
     flex-wrap: wrap;
     gap: 16px 32px;
 
-    @include mix.responsiveMaxX(823px) {
-        justify-content: center;
-    }
-
     &--code-vibes-theme{
         max-width: 1217px;
         padding: 0;
         background-color: transparent;
+
+        @include mix.responsiveMaxX(823px) {
+            justify-content: center;
+        }
+
+        @include mix.responsiveMaxX(400px) {
+            gap: 8px 16px;
+            justify-content: center;
+        }
     }
 
-    @include mix.responsiveMaxX(400px) {
-        gap: 8px 16px;
-        justify-content: center;
+    &--gaming-theme{
+        background-color: #FD96C933;
+        border-radius: 10px;
+        padding: 24px;
+        max-width: 1219px;
+
     }
 }
 
@@ -48,60 +60,97 @@
         gap: 20px;
         background-color: #415652;
     }
+
+    &--gaming-theme{
+        border-radius: 10px;
+        padding: 8.5px 16px;
+        gap: 40px;
+        background-color: white;
+    }
 }
 
 .header__counters__counter {
     display: flex;
-    gap: 4px;
     align-items: center;
 
+    &--code-vibes-theme{
+        gap: 4px;
+    }
+    
+    &--gaming-theme{
+        gap: 8px;
+    }
+
     &__img {
-        height: 20px;
+        
     }
 
     &_span{
-        font-family: 'RedRose';
-        font-weight: 700;
-        font-size: 24px;
         white-space: nowrap;
+        width: 1ch;
 
+        &-name{
+            font-family: 'RedRose';
+            font-weight: 700;
+            font-size: 24px;
+        }
+        
         &--blue{
             color: #2BB1FF;
         }
-
+        
         &--orange{
             color: #F58E39;
         }
-
-        &--font-comfortaa{
+        
+        &--code-vibes-theme{
             font-family: 'Comfortaa';
-            width: 1ch;
+            font-weight: 700;
+            font-size: 24px;
+            
+        }
+
+        &--gaming-theme{
+            font-family: 'Orbitron';
+            font-size: 30px;
+            font-weight: 700;
         }
     }
 }
 
 .header__current-player {
     display: flex;
-    gap: 8px;
     align-items: center;
 
     &--code-vibes-theme{
         align-self: end;
+        gap: 8px;
+    }
+
+    &--gaming-theme{
+        gap: 18px;
     }
 
     &__span {
-        
+        white-space: nowrap;
+
         &--code-vibes-theme{
-            white-space: nowrap;
             font-family: 'RedRose';
             font-weight: 400;
             font-size: 26px;
             color: white;
         }
+
+        &--gaming-theme{
+            font-family: 'Orbitron';
+            font-weight: 700;
+            font-size: 32px;
+            color: white;
+        }
     }
 
     &__img {
-        height: 24px;
+        // height: 24px;
     }
 }
 
@@ -115,8 +164,16 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 64px;
-        width: 213px;
+
+        &--code-vibes-theme{
+            width: 213px;
+            height: 64px;
+        }
+
+        &--gaming-theme{
+            width: 194px;
+            height: 60px;
+        }
     }
 
     &--code-vibes-theme{
@@ -128,6 +185,18 @@
 
         &:hover{
             box-shadow: 4px 4px 4px rgba(240, 234, 110, 0.2)
+        }
+    }
+
+    &--gaming-theme{
+        background-color: #ED1B7614;
+        padding: 12px 20px;
+        border-radius: 10px;
+        border: solid 2px #E71C4F;
+        gap: 10px;
+
+        &:hover{
+            background-color: #ED1B7624;
         }
     }
 
@@ -143,6 +212,12 @@
             font-weight: 700;
             font-size: 24px;
         }
+
+        &--gaming-theme{
+            font-family: 'Orbitron';
+            font-weight: 700;
+            font-size: 20px;
+        }
     }
 }
 
@@ -151,84 +226,84 @@
     width: 100%;
     box-sizing: border-box;
 
-    &--code-vibes-theme-cards16{
+    &--code-vibes-theme-16-cards{
         grid-template-columns: repeat(4, minmax(auto, 120px));
         gap: 16px;
         padding: 0 16px;
         max-width: 561px;
     }
     
-    &--code-vibes-theme-cards24{
+    &--code-vibes-theme-24-cards{
         grid-template-columns: repeat(6, minmax(auto, 120px));
         gap: 6px;
         padding: 0 6px;
         max-width: 763px;
     }
     
-    &--code-vibes-theme-cards36{
+    &--code-vibes-theme-36-cards{
         grid-template-columns: repeat(6, minmax(auto, 120px));
         gap: 6px;
         padding: 0 6px;
         max-width: 763px;
     }
 
-    &--gaming-theme-cards16{
+    &--gaming-theme-16-cards{
         grid-template-columns: repeat(4, minmax(auto, 105px));
         gap: 16px;
         padding: 0 16px;
         max-width: 501px;
     }
     
-    &--gaming-theme-cards24{
+    &--gaming-theme-24-cards{
         grid-template-columns: repeat(6, minmax(auto, 105px));
         gap: 6px;
         padding: 0 6px;
         max-width: 673px;
     }
     
-    &--gaming-theme-cards36{
+    &--gaming-theme-36-cards{
         grid-template-columns: repeat(6, minmax(auto, 105px));
         gap: 6px;
         padding: 0 6px;
         max-width: 673px;
     }
     
-    &--da-projects-theme-cards16{
+    &--da-projects-theme-16-cards{
         grid-template-columns: repeat(4, minmax(auto, 120px));
         gap: 16px;
         padding: 0 16px;
         max-width: 561px;
     }
     
-    &--da-projects-theme-cards24{
+    &--da-projects-theme-24-cards{
         grid-template-columns: repeat(6, minmax(auto, 120px));
         gap: 6px;
         padding: 0 6px;
         max-width: 775px;
     }
     
-    &--da-projects-theme-cards36{
+    &--da-projects-theme-36-cards{
         grid-template-columns: repeat(6, minmax(auto, 120px));
         gap: 8px;
         padding: 0 8px;
         max-width: 777px;
     }
     
-    &--foods-theme-cards16{
+    &--foods-theme-16-cards{
         grid-template-columns: repeat(4, minmax(auto, 122px));
         gap: 16px;
         padding: 0 16px;
         max-width: 569px;
     }
 
-    &--foods-theme-cards24{
+    &--foods-theme-24-cards{
         grid-template-columns: repeat(6, minmax(auto, 122px));
         gap: 8px;
         padding: 0 8px;
         max-width: 788px;
     }
 
-    &--foods-theme-cards36{
+    &--foods-theme-36-cards{
         grid-template-columns: repeat(6, minmax(auto, 122px));
         gap: 6px;
         padding: 0 6px;
@@ -241,6 +316,7 @@
     padding: 0;
     border: none;
     cursor: pointer;
+    background-color: transparent;
 
     &[data-revealed="true"]::before {
         content: "";
@@ -299,6 +375,10 @@
 
         &--front {
             transform: rotateY(180deg);
+
+            &-gaming-theme{
+                border-radius: 12px;
+            }
         }
     }
 
@@ -390,16 +470,43 @@
     flex-direction: column;
     z-index: 1;
 
-    &__img {
-        height: 150px;
-        width: 600px;
-        background-color: aqua;
+    &--code-vibes-theme{
+        background-color: #303131;
     }
 
+    &__h1{
+        //
+        //
+        //
+
+        &--code-vibes-theme{
+            color: #4DD5BC;
+            text-shadow: -7px 0px 8px #4DD5BC80, -2px -2px white;
+            font-size: 189px;
+            font-family: 'RedRose';
+            margin: 0;
+            font-weight: 900;
+        }
+    }
+
+    // &__img {
+    //     height: 150px;
+    //     width: 600px;
+    //     background-color: aqua;
+    // }
+
     &__span {
-        margin-top: 120px;
-        margin-bottom: 16px;
-        font-size: 24px;
+        // margin-top: 120px;
+        // margin-bottom: 16px;
+        // font-size: 24px;
+
+        &--code-vibes-theme{
+            color: white;
+            font-family: 'RedRose';
+            font-size: 26px;
+            margin-bottom: 24px;
+            margin-top: 72px;
+        }
     }
 }
 
@@ -413,30 +520,53 @@
     flex-direction: column;
     z-index: 1;
 
+    &--code-vibes-theme{
+        justify-content: flex-start;
+        background-color: #303131;
+    }
+
     &__special-img {
-        display: none;
-        height: 200px;
-        width: 900px;
-        background-color: red;
-        margin-bottom: 24px;
+        &--code-vibes-theme{
+            width: 100%;
+            aspect-ratio: 1 / 0.29085;
+            max-width: 1233.922px;
+        }
+        
     }
 
     &__span {
-        font-size: 24px;
-        margin-bottom: 8px;
+        //
+        //
+        //
+
+        &--code-vibes-theme{
+            margin-top: -32px;
+            font-size: 40px;
+            font-family: 'RedRose';
+            color: white;
+        }
     }
 
-    &__h2 {
+    &__h1 {
         margin: 0;
-        font-size: 48px;
+        color: black;
+
+        &--code-vibes-theme{
+            font-family: 'RedRose';
+            font-size: 60px;
+            font-weight: 700;
+            margin-top: 10px;
+        }
     }
 
     &__img {
-        width: 200px;
-        height: 280px;
-        margin-top: 48px;
-        margin-bottom: 40px;
-        background-color: orange;
+        //
+        //
+        //
+
+        &--code-vibes-theme{
+            margin: 64px 0;
+        }
     }
 }
 

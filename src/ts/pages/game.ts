@@ -1,7 +1,7 @@
 const gameField: HTMLElement | null = document.getElementById('game-field');
-const isGameThemes:string | null = localStorage.getItem('gameThemes');
-const isChoosePlayer:string | null = localStorage.getItem('choosePlayer');
-const isBoardSize:string | null = localStorage.getItem('boardSize');
+const gameThemes:string | null = localStorage.getItem('gameThemes');
+const choosePlayer:string | null = localStorage.getItem('choosePlayer');
+const boardSize:string | null = localStorage.getItem('boardSize');
 
 const headerBtn: HTMLElement | null = document.getElementById('header-button');
 const backToGameBtn: HTMLElement | null = document.getElementById('back-to-game');
@@ -10,19 +10,16 @@ const winnerBackToSettingsBtn: HTMLElement | null = document.getElementById('win
 const overlayPopUp = document.getElementById('query-overlay__pop-up') as HTMLButtonElement | null;
 const overlay: HTMLElement | null = document.getElementById('query-overlay');
 
-let numberOfCards:number = Number(isBoardSize?.match(/\d+/));
+let numberOfCards:number = Number(boardSize?.match(/\d+/));
+let currentPlayer = choosePlayer;
+let counterBlue: number = 0;
+let counterOrange: number = 0;
 
 let cardsArray: string[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18'];
 let selectedShuffledCardsArray: string[] = [];
 
-let theme: string;
 
-let currentPlayer: 'player-blue' | 'player-orange'
-let counterBlue: number = 0;
-let counterOrange: number = 0;
-
-
-function selectedShuffledCards(): void {
+function selectedShuffledCards():void {
     for (let index = 0; index < numberOfCards / 2; index++) {
         let randomNumber:number = Math.floor(Math.random() * (cardsArray.length));
         selectedShuffledCardsArray.push(cardsArray[randomNumber]);
@@ -37,17 +34,13 @@ function selectedShuffledCards(): void {
     }
 }
 
-function initGame():void{
+function initGame():void {
     selectedShuffledCards();
-    setPlayer();
-    setTheme();
-
     eventListeners();
     setCurrentPlayer();
     setCurrentTheme();
     generateCards();
-
-    test();
+    setGameThemeBoardSize();
 }
 
 function eventListeners():void{
@@ -59,165 +52,202 @@ function eventListeners():void{
     if(overlay) overlay.addEventListener('click', closeOverlay);
 }
 
-function setTheme():void{
-    if(isGameThemes) theme = isGameThemes;
-}
-
-function setCurrentTheme():void{
-    document.getElementById('game-section')?.classList.add(`game-section--${theme}`);
-
-    const blueLable = document.getElementsByClassName('header__counters__counter__img--blue')[0] as HTMLImageElement | null;
-    if(blueLable) blueLable.src =`/assets/img/${theme}-player-blue.png`;
-
-    const orangeLable = document.getElementsByClassName('header__counters__counter__img--orange')[0] as HTMLImageElement | null;
-    if(orangeLable) orangeLable.src =`/assets/img/${theme}-player-orange.png`;
-
-    if(theme == 'code-vibes-theme') {
+function setCurrentTheme():void {
+    overSelectorAddClass('.', 'game-section', `game-section--${gameThemes}`);
+    
+    if(gameThemes == 'code-vibes-theme'){
         document.getElementById('counter-blue-name')?.classList.remove('display-none');
         document.getElementById('counter-orange-name')?.classList.remove('display-none');
-
-        document.getElementById('counter-blue')?.classList.add('header__counters__counter_span--font-comfortaa');
-        document.getElementById('counter-orange')?.classList.add('header__counters__counter_span--font-comfortaa');
-    }
-
-    document.getElementsByClassName('header')[0].classList.add(`header--${theme}`);
-    document.getElementsByClassName('header__counters')[0].classList.add(`header__counters--${theme}`);
-    document.getElementsByClassName('header__current-player')[0].classList.add(`header__current-player--${theme}`);
-    document.getElementsByClassName('header__current-player__span')[0].classList.add(`header__current-player__span--${theme}`);
-    document.getElementsByClassName('header__button')[0].classList.add(`header__button--${theme}`);
-
-    const headerButtonIcon = document.getElementById('header-button-icon') as HTMLImageElement | null;
-    if((theme == 'code-vibes-theme' || theme == 'gaming-theme') && headerButtonIcon) headerButtonIcon.src = `/assets/img/exit-game.png`;
-
-    document.getElementsByClassName('header__button__span')[0].classList.add(`header__button__span--${theme}`);
-
-    document.getElementsByClassName('query-overlay__pop-up')[0].classList.add(`query-overlay__pop-up--${theme}`);
-    document.getElementsByClassName('query-overlay__pop-up__span')[0].classList.add(`query-overlay__pop-up__span--${theme}`);
-    document.getElementsByClassName('query-overlay__pop-up__buttons__button')[0].classList.add(`query-overlay__pop-up__buttons__button--${theme}`);
-    document.getElementsByClassName('query-overlay__pop-up__buttons__button')[1].classList.add(`query-overlay__pop-up__buttons__button--${theme}`);
-    document.getElementsByClassName('query-overlay__pop-up__buttons__button--first')[0].classList.add(`query-overlay__pop-up__buttons__button--first-${theme}`);
-    document.getElementsByClassName('query-overlay__pop-up__buttons__button--second')[0].classList.add(`query-overlay__pop-up__buttons__button--second-${theme}`);
+        overSelectorAddClass('.', 'header__button__span', `header__button__span-name--${gameThemes}`);
+    } 
+    
+    headerAddClass();
+    queryOverlayAddClass();
+    gameOverOverlayAddClass();
+    winnerOverlayAddClass();
+    imageSrcAssign();
 }
 
-function setPlayer():void{
-    if(isChoosePlayer && isChoosePlayer == "player-blue" || isChoosePlayer == "player-orange" ) currentPlayer = isChoosePlayer
+function headerAddClass():void {
+    overSelectorAddClass('.', 'header', `header--${gameThemes}`);
+    overSelectorAddClass('.', 'header__counters', `header__counters--${gameThemes}`);
+    overSelectorAddClass('#', 'counter-blue', `header__counters__counter_span--${gameThemes}`);
+    overSelectorAddClass('.', 'header__counters__counter', `header__counters__counter--${gameThemes}`)
+    overSelectorAddClass('#', 'counter-orange', `header__counters__counter_span--${gameThemes}`);
+    overSelectorAddClass('.', 'header__current-player', `header__current-player--${gameThemes}`);
+    overSelectorAddClass('.', 'header__current-player__span', `header__current-player__span--${gameThemes}`);
+    overSelectorAddClass('.', 'header__button', `header__button--${gameThemes}`);
+    overSelectorAddClass('.', 'header__button__span', `header__button__span--${gameThemes}`);
+    overSelectorAddClass('.', 'header__button__div', `header__button__div--${gameThemes}`);
+}
+
+function queryOverlayAddClass():void {
+    overSelectorAddClass('.', 'query-overlay__pop-up', `query-overlay__pop-up--${gameThemes}`);
+    overSelectorAddClass('.', 'query-overlay__pop-up__span', `query-overlay__pop-up__span--${gameThemes}`);
+    overSelectorAddClass('.', 'query-overlay__pop-up__buttons__button', `query-overlay__pop-up__buttons__button--${gameThemes}`);
+    overSelectorAddClass('.', 'query-overlay__pop-up__buttons__button--first', `query-overlay__pop-up__buttons__button--first-${gameThemes}`);
+    overSelectorAddClass('.', 'query-overlay__pop-up__buttons__button--second', `query-overlay__pop-up__buttons__button--second-${gameThemes}`);
+}
+
+function gameOverOverlayAddClass():void {
+    overSelectorAddClass('#', 'game-over', `game-over--${gameThemes}`);
+    overSelectorAddClass('.', 'game-over__h1', `game-over__h1--${gameThemes}`);
+    overSelectorAddClass('.', 'game-over__span', `game-over__span--${gameThemes}`);
+}
+
+function winnerOverlayAddClass():void {
+    overSelectorAddClass('.', 'winner', `winner--${gameThemes}`);
+    overSelectorAddClass('.', 'winner__special-img', `winner__special-img--${gameThemes}`);
+    overSelectorAddClass('.', 'winner__span', `winner__span--${gameThemes}`);
+    overSelectorAddClass('.', 'winner__h1', `winner__h1--${gameThemes}`);
+    overSelectorAddClass('.', 'winner__img', `winner__img--${gameThemes}`);
+}
+
+function imageSrcAssign():void {
+    overSelectorImageSrcAssign('.', 'header__counters__counter__img--blue', `/assets/img/${gameThemes}-player-blue.png`);
+    overSelectorImageSrcAssign('.', 'header__counters__counter__img--orange', `/assets/img/${gameThemes}-player-orange.png`);
+    if(gameThemes == 'code-vibes-theme' || gameThemes == 'gaming-theme') overSelectorImageSrcAssign('#', 'header-button-icon', '/assets/img/exit-game.png');
+}
+
+function overSelectorAddClass(selector:'#' | '.' ,selectedAllElements:string, addClass:string):void {
+    document.querySelectorAll(`${selector}${selectedAllElements}`).forEach(selectedElement => {
+        selectedElement.classList.add(`${addClass}`);
+    });
+}
+
+function overSelectorImageSrcAssign(selector:'#' | '.' ,selectedAllElements:string, imageSrc:string):void {
+    document.querySelectorAll<HTMLImageElement>(`${selector}${selectedAllElements}`).forEach(selectedElement => {
+        selectedElement.src = imageSrc;
+    });
 }
 
 function setCurrentPlayer():void{
     const currentPlayerIcon = document.getElementById('currentPlayer') as HTMLImageElement | null;
-    if(currentPlayerIcon) currentPlayerIcon.src = `/assets/img/${theme}-${currentPlayer}.png`
+    if(currentPlayerIcon) currentPlayerIcon.src = `/assets/img/${gameThemes}-current-${currentPlayer}.png`;
 }
 
-function test():void{
-    if(localStorage.getItem('gameThemes') == 'code-vibes-theme'){
-        if(localStorage.getItem('boardSize') == '16-cards') gameField?.classList.add('game-field--code-vibes-theme-cards16');
-        if(localStorage.getItem('boardSize') == '24-cards') gameField?.classList.add('game-field--code-vibes-theme-cards24');
-        if(localStorage.getItem('boardSize') == '36-cards') gameField?.classList.add('game-field--code-vibes-theme-cards36');
-    }
-
-    if(localStorage.getItem('gameThemes') == 'gaming-theme'){
-        if(localStorage.getItem('boardSize') == '16-cards') gameField?.classList.add('game-field--gaming-theme-cards16');
-        if(localStorage.getItem('boardSize') == '24-cards') gameField?.classList.add('game-field--gaming-theme-cards24');
-        if(localStorage.getItem('boardSize') == '36-cards') gameField?.classList.add('game-field--gaming-theme-cards36');
-    }
-
-    if(localStorage.getItem('gameThemes') == 'da-projects-theme'){
-        if(localStorage.getItem('boardSize') == '16-cards') gameField?.classList.add('game-field--da-projects-theme-cards16');
-        if(localStorage.getItem('boardSize') == '24-cards') gameField?.classList.add('game-field--da-projects-theme-cards24');
-        if(localStorage.getItem('boardSize') == '36-cards') gameField?.classList.add('game-field--da-projects-theme-cards36');
-    }
-
-    if(localStorage.getItem('gameThemes') == 'foods-theme'){
-        if(localStorage.getItem('boardSize') == '16-cards') gameField?.classList.add('game-field--foods-theme-cards16');
-        if(localStorage.getItem('boardSize') == '24-cards') gameField?.classList.add('game-field--foods-theme-cards24');
-        if(localStorage.getItem('boardSize') == '36-cards') gameField?.classList.add('game-field--foods-theme-cards36');
-    }
+function setGameThemeBoardSize():void{
+    if(gameField) gameField.classList.add(`game-field--${gameThemes}-${boardSize}`);
 }
 
 function generateCards():void{
-    if(gameField && isGameThemes && isChoosePlayer && isBoardSize){
-
-        for (let index = 0; index < numberOfCards; index++) {
-            const card: HTMLButtonElement = document.createElement('button');
-            card.addEventListener('click', () => {
-                if(document.querySelectorAll(".is-flipped[data-revealed = 'false']").length <2){
-                    card.classList.add('is-flipped');
-
-                    if(document.querySelectorAll(`.is-flipped[data-pair='${card.dataset.pair}'][data-revealed = 'false']`).length == 2){
-                        if(currentPlayer == 'player-blue') counterUP('blue');
-                        if(currentPlayer == 'player-orange') counterUP('orange');
-                        document.querySelectorAll<HTMLButtonElement>(`.is-flipped[data-pair='${card.dataset.pair}']`).forEach(element => {
-                            element.dataset.revealed = 'true';
-                            element.removeEventListener;
-                        });
-                    }
-                    else if(document.querySelectorAll(".is-flipped[data-revealed='false']").length == 2){
-                        document.querySelectorAll(".is-flipped[data-revealed='false']").forEach(element => {
-                            setTimeout(() => element.classList.remove('is-flipped'), 400);
-                        });
-
-                        setTimeout(() => {
-                            if(currentPlayer == 'player-blue'){
-                                currentPlayer = "player-orange"
-                                setCurrentPlayer();
-                            } 
-
-                            else{
-                                currentPlayer = 'player-blue';
-                                setCurrentPlayer();
-                            }
-                        }, 500);
-                    }
-                }
-
-                if(counterBlue + counterOrange == numberOfCards/2){
-                    const gaOvCounterBlue:HTMLSpanElement | null = document.getElementById('game-over-counter-blue');
-                    const gaOvCounterOrange:HTMLSpanElement | null = document.getElementById('game-over-counter-orange');
-                    const gameOver = document.getElementById('game-over') as HTMLDivElement | null; 
-
-                    const winnerTitle: HTMLElement | null = document.getElementById('winner-title');
-                    const winnerImg = document.getElementById('winner-img') as HTMLImageElement | null;
-                    const winner = document.getElementById('winner') as HTMLDivElement | null;
-
-                    setTimeout(() => {
-                        if(gaOvCounterBlue) gaOvCounterBlue.textContent = String(counterBlue);
-                        if(gaOvCounterOrange) gaOvCounterOrange.textContent = String(counterOrange);
-                        if(gameOver) gameOver.classList.remove('display-none');
-                    }, 800);
-
-                    setTimeout(() => {
-                        if(gameOver) gameOver.classList.add('display-none');
-                        if(winnerTitle) winnerTitle.textContent = counterBlue < counterOrange ? 'Orange player' : 'Blue Player'
-                        if(winnerImg) winnerImg.style.backgroundColor = counterBlue < counterOrange ? 'orange' : 'blue';
-                        if(winner) winner.classList.remove('display-none');
-                    }, 1600);
-                }
-            });
-
-            let theme = localStorage.getItem('gameThemes');
-            card.dataset.pair = theme+'-front-'+selectedShuffledCardsArray[index];
-            card.dataset.revealed = 'false';
-
-            card.classList.add('card', `card--${theme}`);
-            card.innerHTML = `<div class="card__inner card__inner--xy-size-${theme}"><img class="card__face card__face--front" src="assets/img/${card.dataset.pair}.png" alt=""><img class="card__face card__face--back" src="assets/img/${theme}-back.png" alt=""></div>`
-            gameField.append(card);
+    if(gameField && gameThemes && choosePlayer && boardSize){
+        for (let index = 0; index < numberOfCards; index++){
+            createCard(index);
         }
     }
+
     else window.location.href = "/settings";
 }
 
-function counterUP(player:string):void{
-    const counterBlueSpan:HTMLSpanElement | null = document.getElementById('counter-blue');
-    const counterOrangeSpan:HTMLSpanElement | null = document.getElementById('counter-orange');
-    if(player == 'blue'){
-        counterBlue++
-        if(counterBlueSpan)counterBlueSpan.textContent = String(counterBlue);   
+function createCard(index:number){
+    const card: HTMLButtonElement = document.createElement('button');
+
+    card.dataset.pair = gameThemes+'-front-'+selectedShuffledCardsArray[index];
+    card.dataset.revealed = 'false';
+    card.classList.add('card', `card--${gameThemes}`);
+    card.innerHTML = `<div class="card__inner card__inner--xy-size-${gameThemes}"><img class="card__face card__face--front" src="assets/img/${card.dataset.pair}.png" alt=""><img class="card__face card__face--back" src="assets/img/${gameThemes}-back.png" alt=""></div>`
+    
+    overSelectorAddClass('.', 'card__face--front', `card__face--front-${gameThemes}`);
+    
+    card.addEventListener('click', () => {
+        if(document.querySelectorAll(".is-flipped[data-revealed = 'false']").length <2) revealTwoCards(card);
+        if(counterBlue + counterOrange == numberOfCards/2) allCardsRevealed();
+    });
+
+    if(gameField) gameField.append(card);
+}
+
+function revealTwoCards(card:HTMLButtonElement):void {
+    card.classList.add('is-flipped');
+
+    if(document.querySelectorAll(`.is-flipped[data-pair='${card.dataset.pair}'][data-revealed = 'false']`).length == 2){
+        twoSameCards(card);
     }
 
-    if(player == 'orange'){
-        counterOrange++;
-        if(counterOrangeSpan) counterOrangeSpan.textContent = String(counterOrange);
+    else if(document.querySelectorAll(".is-flipped[data-revealed='false']").length == 2){
+        twoOddCards();
     }
+}
+
+function twoSameCards(card:HTMLButtonElement){
+    if(currentPlayer == 'player-blue') counterUpBlue();
+    if(currentPlayer == 'player-orange') counterUpOrange();
+
+    document.querySelectorAll<HTMLButtonElement>(`.is-flipped[data-pair='${card.dataset.pair}']`).forEach(element => {
+        element.dataset.revealed = 'true';
+        element.removeEventListener;
+    });
+}
+
+function twoOddCards(){
+    document.querySelectorAll(".is-flipped[data-revealed='false']").forEach(element => {
+        setTimeout(() => element.classList.remove('is-flipped'), 400);
+    });
+
+    changePlayer();
+}
+
+function changePlayer(){
+    setTimeout(() => {
+        if(currentPlayer == 'player-blue'){
+            currentPlayer = "player-orange";
+            setCurrentPlayer();
+        } 
+    
+        else{
+            currentPlayer = 'player-blue';
+            setCurrentPlayer();
+        }
+    }, 500);
+}
+
+function allCardsRevealed():void {
+    const gameOver = document.getElementById('game-over') as HTMLDivElement | null; 
+    const counters: HTMLElement | null = document.getElementById('counters');
+    let clone: Node | undefined = counters?.cloneNode(true);
+
+    if(clone) gameOver?.appendChild(clone);
+    
+    showGameOver(gameOver);
+    showWinner(gameOver);
+}
+
+function showGameOver(gameOver:HTMLSpanElement | null){
+    const gaOvCounterBlue:HTMLSpanElement | null = document.getElementById('game-over-counter-blue');
+    const gaOvCounterOrange:HTMLSpanElement | null = document.getElementById('game-over-counter-orange');
+
+    setTimeout(() => {
+        if(gaOvCounterBlue) gaOvCounterBlue.textContent = String(counterBlue);
+        if(gaOvCounterOrange) gaOvCounterOrange.textContent = String(counterOrange);
+        if(gameOver) gameOver.classList.remove('display-none');
+    }, 800);
+}
+
+function showWinner(gameOver:HTMLDivElement | null){
+    const winnerTitle: HTMLElement | null = document.getElementById('winner-title');
+    const winnerImg = document.getElementById('winner-img') as HTMLImageElement | null;
+    const winner = document.getElementById('winner') as HTMLDivElement | null;
+
+    setTimeout(() => {
+        if(gameOver) gameOver.classList.add('display-none');
+        if(winnerTitle) winnerTitle.textContent = counterBlue < counterOrange ? 'Orange player' : 'Blue Player'
+        if(winnerTitle) winnerTitle.style.color = counterBlue < counterOrange ? '#F58E39' : '#2BB1FF'
+        if(winnerImg) winnerImg.src = counterBlue < counterOrange ? `/assets/img/${gameThemes}-winner-orange.png` : `/assets/img/${gameThemes}-winner-blue.png`;
+        if(winner) winner.classList.remove('display-none');
+    }, 2500);
+}
+
+function counterUpBlue():void{
+    const counterBlueSpan:HTMLSpanElement | null = document.getElementById('counter-blue');
+    counterBlue++
+    if(counterBlueSpan)counterBlueSpan.textContent = String(counterBlue);
+}
+
+function counterUpOrange():void{
+    const counterOrangeSpan:HTMLSpanElement | null = document.getElementById('counter-orange');
+    counterOrange++;
+    if(counterOrangeSpan) counterOrangeSpan.textContent = String(counterOrange);
 }
 
 function openOverlay():void{

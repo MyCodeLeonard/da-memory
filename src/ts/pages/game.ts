@@ -53,12 +53,12 @@ function eventListeners():void{
 }
 
 function setCurrentTheme():void {
-    overSelectorAddClass('.', 'game-section', `game-section--${gameThemes}`);
+    overSelectorAddClass('.', 'game-section', `--${gameThemes}`);
     
     if(gameThemes == 'code-vibes-theme'){
         document.getElementById('counter-blue-name')?.classList.remove('display-none');
         document.getElementById('counter-orange-name')?.classList.remove('display-none');
-        overSelectorAddClass('.', 'header__button__span', `header__button__span-name--${gameThemes}`);
+        overSelectorAddClass('.', 'header__button__span', `--${gameThemes}`);
         document.getElementById('confetti')?.classList.remove('display-none');
     } 
     
@@ -67,41 +67,53 @@ function setCurrentTheme():void {
     gameOverOverlayAddClass();
     winnerOverlayAddClass();
     imageSrcAssign();
+    imageHover(`/assets/img/exit-game`);
+
+
+    if(backToGameBtn && gameThemes=='gaming-theme') backToGameBtn.textContent = 'No, back to game';
+    if(backToSettingsBtn && gameThemes=='gaming-theme') backToSettingsBtn.textContent = 'Yes, quit game';
+    
 }
 
 function headerAddClass():void {
-    overSelectorAddClass('.', 'header', `header--${gameThemes}`);
-    overSelectorAddClass('.', 'header__counters', `header__counters--${gameThemes}`);
+    overSelectorAddClass('.', 'header', `--${gameThemes}`);
+    overSelectorAddClass('.', 'header__counters', `--${gameThemes}`);
     overSelectorAddClass('#', 'counter-blue', `header__counters__counter_span--${gameThemes}`);
-    overSelectorAddClass('.', 'header__counters__counter', `header__counters__counter--${gameThemes}`)
+    overSelectorAddClass('.', 'header__counters__counter', `--${gameThemes}`)
     overSelectorAddClass('#', 'counter-orange', `header__counters__counter_span--${gameThemes}`);
-    overSelectorAddClass('.', 'header__current-player', `header__current-player--${gameThemes}`);
-    overSelectorAddClass('.', 'header__current-player__span', `header__current-player__span--${gameThemes}`);
-    overSelectorAddClass('.', 'header__button', `header__button--${gameThemes}`);
-    overSelectorAddClass('.', 'header__button__span', `header__button__span--${gameThemes}`);
-    overSelectorAddClass('.', 'header__button__div', `header__button__div--${gameThemes}`);
+    overSelectorAddClass('.', 'header__current-player', `--${gameThemes}`);
+    overSelectorAddClass('.', 'header__current-player__span', `--${gameThemes}`);
+    overSelectorAddClass('.', 'header__button', `--${gameThemes}`);
+    overSelectorAddClass('.', 'header__button__span', `--${gameThemes}`);
+    overSelectorAddClass('.', 'header__button__div', `--${gameThemes}`);
+    overSelectorAddClass('.', 'header__counters__counter__img', `--${gameThemes}`);
+    overSelectorAddClass('.', 'header__current-player__img', `--${gameThemes}`);
+    overSelectorAddClass('.', 'header__button__img', `--${gameThemes}`);
+    overSelectorAddClass('.', 'header__counters__counter_span--blue', `-${gameThemes}`);
+    overSelectorAddClass('.', 'header__counters__counter_span--orange', `-${gameThemes}`);
 }
 
 function queryOverlayAddClass():void {
-    overSelectorAddClass('.', 'query-overlay__pop-up', `query-overlay__pop-up--${gameThemes}`);
-    overSelectorAddClass('.', 'query-overlay__pop-up__span', `query-overlay__pop-up__span--${gameThemes}`);
-    overSelectorAddClass('.', 'query-overlay__pop-up__buttons__button', `query-overlay__pop-up__buttons__button--${gameThemes}`);
-    overSelectorAddClass('.', 'query-overlay__pop-up__buttons__button--first', `query-overlay__pop-up__buttons__button--first-${gameThemes}`);
-    overSelectorAddClass('.', 'query-overlay__pop-up__buttons__button--second', `query-overlay__pop-up__buttons__button--second-${gameThemes}`);
+    overSelectorAddClass('.', 'query-overlay__pop-up', `--${gameThemes}`);
+    overSelectorAddClass('.', 'query-overlay__pop-up__span', `--${gameThemes}`);
+    overSelectorAddClass('.', 'query-overlay__pop-up__buttons__button', `--${gameThemes}`);
+    overSelectorAddClass('.', 'query-overlay__pop-up__buttons__button--first', `-${gameThemes}`);
+    overSelectorAddClass('.', 'query-overlay__pop-up__buttons__button--second', `-${gameThemes}`);
+    overSelectorAddClass('.', 'query-overlay__pop-up__buttons', `--${gameThemes}`);
 }
 
 function gameOverOverlayAddClass():void {
-    overSelectorAddClass('#', 'game-over', `game-over--${gameThemes}`);
-    overSelectorAddClass('.', 'game-over__h1', `game-over__h1--${gameThemes}`);
-    overSelectorAddClass('.', 'game-over__span', `game-over__span--${gameThemes}`);
+    overSelectorAddClass('.', 'game-over', `--${gameThemes}`);
+    overSelectorAddClass('.', 'game-over__h1', `--${gameThemes}`);
+    overSelectorAddClass('.', 'game-over__span', `--${gameThemes}`);
 }
 
 function winnerOverlayAddClass():void {
-    overSelectorAddClass('.', 'winner', `winner--${gameThemes}`);
-    overSelectorAddClass('.', 'winner__special-img', `winner__special-img--${gameThemes}`);
-    overSelectorAddClass('.', 'winner__span', `winner__span--${gameThemes}`);
-    overSelectorAddClass('.', 'winner__h1', `winner__h1--${gameThemes}`);
-    overSelectorAddClass('.', 'winner__img', `winner__img--${gameThemes}`);
+    overSelectorAddClass('.', 'winner', `--${gameThemes}`);
+    overSelectorAddClass('.', 'winner__special-img', `--${gameThemes}`);
+    overSelectorAddClass('.', 'winner__span', `--${gameThemes}`);
+    overSelectorAddClass('.', 'winner__h1', `--${gameThemes}`);
+    overSelectorAddClass('.', 'winner__img', `--${gameThemes}`);
 }
 
 function imageSrcAssign():void {
@@ -111,9 +123,17 @@ function imageSrcAssign():void {
 }
 
 function overSelectorAddClass(selector:'#' | '.' ,selectedAllElements:string, addClass:string):void {
-    document.querySelectorAll(`${selector}${selectedAllElements}`).forEach(selectedElement => {
-        selectedElement.classList.add(`${addClass}`);
-    });
+    if(selector =='#'){
+        document.querySelectorAll(`${selector}${selectedAllElements}`).forEach(selectedElement => {
+            selectedElement.classList.add(`${addClass}`);
+        });
+    }
+
+    else{
+        document.querySelectorAll(`${selector}${selectedAllElements}`).forEach(selectedElement => {
+            selectedElement.classList.add(`${selectedAllElements}${addClass}`);
+        });
+    }
 }
 
 function overSelectorImageSrcAssign(selector:'#' | '.' ,selectedAllElements:string, imageSrc:string):void {
@@ -122,9 +142,20 @@ function overSelectorImageSrcAssign(selector:'#' | '.' ,selectedAllElements:stri
     });
 }
 
+function imageHover(imageSrc:string):void {
+    let imgElement = document.getElementsByClassName('header__button__img--gaming-theme')[0] as HTMLImageElement | null;
+    let buttonElement = document.getElementsByClassName('header__button--gaming-theme')[0] as HTMLButtonElement | null;
+
+    if(buttonElement && imgElement){
+        buttonElement.addEventListener('mouseover', () =>  imgElement.src = imageSrc + '-hover.png');
+        buttonElement.addEventListener('mouseleave', () => imgElement.src = imageSrc + '.png');
+    }
+}
+
 function setCurrentPlayer():void{
     const currentPlayerIcon = document.getElementById('currentPlayer') as HTMLImageElement | null;
-    if(currentPlayerIcon) currentPlayerIcon.src = `/assets/img/${gameThemes}-current-${currentPlayer}.png`;
+    if(currentPlayerIcon && (gameThemes == 'da-projects-theme' || 'foods-theme')) currentPlayerIcon.src =`/assets/img/current-${currentPlayer}.png`;
+    else if(currentPlayerIcon) currentPlayerIcon.src = `/assets/img/${gameThemes}-current-${currentPlayer}.png`;
 }
 
 function setGameThemeBoardSize():void{
@@ -149,7 +180,7 @@ function createCard(index:number){
     card.classList.add('card', `card--${gameThemes}`);
     card.innerHTML = `<div class="card__inner card__inner--xy-size-${gameThemes}"><img class="card__face card__face--front" src="assets/img/${card.dataset.pair}.png" alt=""><img class="card__face card__face--back" src="assets/img/${gameThemes}-back.png" alt=""></div>`
     
-    overSelectorAddClass('.', 'card__face--front', `card__face--front-${gameThemes}`);
+    overSelectorAddClass('.', 'card__face--front', `-${gameThemes}`);
 
     card.addEventListener('click', () => {
         if(document.querySelectorAll(".is-flipped[data-revealed = 'false']").length <2) revealTwoCards(card);
@@ -206,9 +237,12 @@ function changePlayer(){
 function allCardsRevealed():void {
     const gameOver = document.getElementById('game-over') as HTMLDivElement | null; 
     const counters: HTMLElement | null = document.getElementById('counters');
+
+    counters?.classList.add(`header__counters--game-over-${gameThemes}`)
+
     let clone: Node | undefined = counters?.cloneNode(true);
 
-    if(clone) gameOver?.appendChild(clone);
+    if(clone)gameOver?.appendChild(clone);
     
     showGameOver(gameOver);
     showWinner(gameOver);
@@ -226,15 +260,19 @@ function showGameOver(gameOver:HTMLSpanElement | null){
 }
 
 function showWinner(gameOver:HTMLDivElement | null){
-    const winnerTitle: HTMLElement | null = document.getElementById('winner-title');
+    const winnerTitle:HTMLElement | null = document.getElementById('winner-title');
     const winnerImg = document.getElementById('winner-img') as HTMLImageElement | null;
     const winner = document.getElementById('winner') as HTMLDivElement | null;
+    const winnterBtnText:HTMLElement | null = document.getElementById('winner-btn-span');
 
     setTimeout(() => {
         if(gameOver) gameOver.classList.add('display-none');
         if(winnerTitle) winnerTitle.textContent = counterBlue < counterOrange ? 'Orange player' : 'Blue Player'
-        if(winnerTitle) winnerTitle.style.color = counterBlue < counterOrange ? '#F58E39' : '#2BB1FF'
-        if(winnerImg) winnerImg.src = counterBlue < counterOrange ? `/assets/img/${gameThemes}-winner-orange.png` : `/assets/img/${gameThemes}-winner-blue.png`;
+        if(winnerTitle && gameThemes == 'code-vibes-theme') winnerTitle.style.color = counterBlue < counterOrange ? '#F58E39' : '#2BB1FF';
+        if(winnerTitle && gameThemes == 'gaming-theme') winnerTitle.style.color = counterBlue < counterOrange ? '#EA6900' : '#097FC5';
+        if(winnerImg && gameThemes == 'code-vibes-theme') winnerImg.src = counterBlue < counterOrange ? `/assets/img/${gameThemes}-winner-orange.png` : `/assets/img/${gameThemes}-winner-blue.png`;
+        else if(winnerImg) winnerImg.src = counterBlue < counterOrange ? `/assets/img/${gameThemes}-winner.png` : `/assets/img/${gameThemes}-winner.png`;
+        if(winnterBtnText && gameThemes == 'gaming-theme') winnterBtnText.textContent = 'Home';
         if(winner) winner.classList.remove('display-none');
     }, 2500);
 }

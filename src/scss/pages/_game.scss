@@ -54,6 +54,10 @@
         background-color: #F0F3F4;
         padding: 24px;
         border-radius: 10px;
+
+        @include mix.responsiveMaxX(700px){
+            justify-content: center;
+        }
     }
 }
 
@@ -78,7 +82,8 @@
         background-color: white;
         border-radius: 10px;
         gap: 40px;
-        padding: 0 16px;
+        padding: 8.5px 16px;
+        flex-direction: row-reverse;
     }
 
     &--game-over{
@@ -88,6 +93,21 @@
             margin-top: 6px;
         }
 
+        &-da-projects-theme{
+            padding: 15px 33.35px;
+
+            >.header__counters__counter--da-projects-theme {
+                gap: 8px;
+
+                >.header__counters__counter__img--da-projects-theme {
+                    width: 24px;
+                }
+
+                >.header__counters__counter_span--da-projects-theme {
+                        font-size: 38px;
+                }
+            }
+        }
     }
 }
 
@@ -122,6 +142,15 @@
             font-family: 'RedRose';
             font-weight: 700;
             font-size: 24px;
+
+            &--orange{
+                color: #F58E39;
+            }
+
+            &--blue{
+                color: #2BB1FF;
+            }
+            
         }
         
         &--blue{
@@ -139,7 +168,7 @@
         }
         
         &--orange{
-            &-code-vibes-theme{
+            &-code-vibes-theme {
                 color: #F58E39;
             }
 
@@ -209,7 +238,8 @@
         &--da-projects-theme{
             font-family: 'Figtree';
             font-weight: 700;
-            font-size: 32px;
+            // font-size: 32px;
+            font-size: clamp(24px, 2.222vw, 32px);
             color: #1E7594;
         }
     }
@@ -217,6 +247,10 @@
     &__img {
         &--gaming-theme{
             width: clamp(28px, 2.847vw, 41px);
+        }
+
+        &--da-projects-theme{
+            width: clamp(32px, 2.847vw, 41px);
         }
     }
 }
@@ -241,10 +275,6 @@
             width: 194px;
             height: 60px;
         }
-
-        &--da-projects-theme{
-
-        }
     }
 
     &--code-vibes-theme{
@@ -256,7 +286,7 @@
 
         &:hover{
             box-shadow: 4px 4px 4px rgba(240, 234, 110, 0.2);
-            border-width: 3px; //nochmal prüfen
+            border-width: 3px;
         }
     }
 
@@ -269,7 +299,7 @@
 
         &:hover{
             background-color: #ED1B7624;
-            border-width: 3px; //nochmal prüfen
+            border-width: 3px;
         }
     }
 
@@ -283,6 +313,12 @@
         font-weight: 700;
         font-size: 20px;
         color: #1E7594;
+
+        &:hover{
+            background-color: #1E7594;
+            color: white;
+            box-shadow: 3px 3px 5px 0px #2F2E2E33;
+        }
     }
 
     &__img{
@@ -297,7 +333,7 @@
         &--code-vibes-theme{
             font-family: 'RedRose';
             font-weight: 700;
-            font-size: 24px;
+            font-size: clamp(20px, 1.667vw, 24px);
         }
 
         &--gaming-theme{
@@ -511,6 +547,13 @@
             border-radius: 20px;
         }
 
+        &--da-projects-theme{
+            background-color: #F0F6F9;
+            border-radius: 20px;
+            padding: 40px;
+            gap: 40px;
+        }
+
         &__span {
 
             &--code-vibes-theme{
@@ -535,6 +578,14 @@
                     width: auto;
                 }
             }
+
+            &--da-projects-theme{
+                font-family: 'Figtree';
+                font-weight: 700;
+                font-size: 28px;
+                width: 20.637ch;
+                color: #294F60;
+            }
         }
     }
 }
@@ -547,6 +598,10 @@
     }
 
     &--gaming-theme{
+        gap: 24px;
+    }
+
+    &--da-projects-theme{
         gap: 24px;
     }
 
@@ -587,6 +642,19 @@
             }
         }
 
+        &--da-projects-theme{
+            border-radius: 10px;
+            padding: 12px 20px;
+            font-family: 'Figtree';
+            font-weight: 700;
+            font-size: 16px;
+            box-shadow: 3px 3px 5px 0 #2F2E2E33;
+
+            &:hover{
+                color: white;
+            }
+        }
+
         &--first {
             &-code-vibes-theme{
                 background-color: #66cfbc;
@@ -608,6 +676,15 @@
                     &::after{
                         border-width: 2px;
                     }
+                }
+            }
+
+            &-da-projects-theme{
+                background-color: #BFE5F2;
+                color: #1E7594;
+
+                &:hover{
+                    background-color: #1E7594;
                 }
             }
         }
@@ -645,6 +722,15 @@
                     }
                 }
             }
+
+            &-da-projects-theme{
+                background-color: #FD8A81;
+                color: white;
+
+                &:hover{
+                    background-color: #ED5B50;
+                }
+            }
         }
     }
 }
@@ -667,21 +753,33 @@
         background-color: #294F60;
     }
 
+    &--da-projects-theme{
+        background-color: #1E7594;
+    }
+
     &__h1{
         margin: 0;
-        font-weight: 900;
 
         &--code-vibes-theme{
             color: #4DD5BC;
             text-shadow: -7px 0px 8px #4DD5BC80, -2px -2px white;
-            font-size: 189px;
+            font-size: clamp(56px, 13.125vw, 189px);
             font-family: 'RedRose';
+            font-weight: 900;
         }
 
         &--gaming-theme{
             font-family: 'Orbitron';
             font-size: clamp(48px, 8.611vw, 124px);
             color: #ED1B76;
+            font-weight: 900;
+        }
+
+        &--da-projects-theme{
+            font-family: 'Figtree';
+            font-weight: 800;
+            font-size: clamp(56px, 9.028vw, 130px);
+            color: #FD5B4F;
         }
     }
 
@@ -701,6 +799,14 @@
             font-family: 'Orbitron';
             font-weight: 700;
             font-size: 28px;
+        }
+
+        &--da-projects-theme{
+            margin-top: clamp(52px, 7.222vw, 104px);
+            margin-bottom: 24px;
+            font-family: 'Figtree';
+            font-weight: 500;
+            font-size: clamp(32px, 9.028vw, 40px);
         }
     }
 }
@@ -724,6 +830,10 @@
         background-color: #294F60;
     }
 
+    &--da-projects-theme{
+        background-color: #1E7594;
+    }
+
     &__special-img {
         &--code-vibes-theme{
             width: 100%;
@@ -736,7 +846,7 @@
     &__span {
         &--code-vibes-theme{
             margin-top: -32px;
-            font-size: 40px;
+            font-size: clamp(32px, 2.778vw, 40px);
             font-family: 'RedRose';
             color: white;
         }
@@ -744,8 +854,15 @@
         &--gaming-theme{
             font-family: 'Orbitron';
             font-weight: 700;
-            font-size: 28px;
+            font-size: clamp(24px, 1.944vw, 28px);
             color: white;
+        }
+
+        &--da-projects-theme{
+            font-family: 'Figtree';
+            font-size: clamp(32px, 2.778vw, 40px);
+            color: white;
+            margin-bottom: 8px;
         }
     }
 
@@ -755,7 +872,7 @@
 
         &--code-vibes-theme{
             font-family: 'RedRose';
-            font-size: 60px;
+            font-size: clamp(40px, 4.167vw, 60px);
             font-weight: 700;
             margin-top: 10px;
         }
@@ -763,9 +880,16 @@
         &--gaming-theme{
             font-family: 'Orbitron';
             font-weight: 700;
-            font-size: 64px;
+            font-size: clamp(32px, 4.444vw, 64px);
             margin-top: 8px;
             margin-bottom: 64px;
+        }
+
+        &--da-projects-theme{
+            font-family: 'Figtree';
+            font-weight: 700;
+            font-size: clamp(40px, 5.556vw, 80px);
+            color: white;
         }
     }
 
@@ -775,7 +899,11 @@
         }
 
         &--gaming-theme{
-            margin-bottom: 64px;
+            margin-bottom: clamp(32px, 4.444vw, 64px);
+        }
+
+        &--da-projects-theme{
+            margin: 64px 0;
         }
     }
 }

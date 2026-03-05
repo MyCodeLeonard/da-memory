@@ -3,4 +3,9 @@
 @use './pages/index';
 @use './pages/settings';
 @use './pages/game';
-@use './components/button';
+@use './components/button-global';
+@use './components/button-game';
+@use './themes/code-vibes-theme';
+@use './themes/gaming-theme';
+@use './themes//da-projects-theme';
+@use './themes/foods-theme';

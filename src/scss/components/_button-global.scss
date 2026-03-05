@@ -1,6 +1,6 @@
 @use "../abstracts/variables" as var;
 
-.button {
+.button-global {
     align-self: center;
     display: flex;
     align-items: center;
@@ -27,7 +27,7 @@
             padding: 27px 32px;
             transform: translateY(2px);
 
-            .button{
+            .button-global {
                 &__img {
                     transform: rotate(-25.77deg) scale(1.1);
                 }
@@ -51,7 +51,7 @@
             margin-right: 8px;
             margin-left: 8px;
 
-            .button__img{
+            .button-global__img{
                 transform: rotate(-10deg) scale(1.1);
             }
         }
@@ -87,7 +87,7 @@
     }
 }
 
-.button__images{
+.button-global__images{
     position: relative;
     display: flex;
     width: 40px;

@@ -70,7 +70,7 @@ function setCurrentTheme():void {
     winnerOverlayAddClass();
     imageSrcAssign();
 
-    if(backToGameBtn && gameThemes=='gaming-theme') backToGameBtn.textContent = 'No, back to game';
+    if(backToGameBtn && gameThemes && ['gaming-theme', 'foods-theme'].includes(gameThemes)) backToGameBtn.textContent = 'No, back to game';
     if(backToSettingsBtn && gameThemes=='gaming-theme') backToSettingsBtn.textContent = 'Yes, quit game';
     
 }
@@ -91,6 +91,8 @@ function headerAddClass():void {
     overSelectorAddClass('header__button__img', `--${gameThemes}`);
     overSelectorAddClass('header__counters__counter_span--blue', `-${gameThemes}`);
     overSelectorAddClass('header__counters__counter_span--orange', `-${gameThemes}`);
+
+    overSelectorAddClass('counters-go',`header__counters--game-over-${gameThemes}`, '#');
 }
 
 function queryOverlayAddClass():void {
@@ -123,6 +125,7 @@ function imageSrcAssign():void {
     overSelectorImageSrcAssign('header__counters__counter__img--orange', `/assets/img/${gameThemes}-player-orange.png`);
     if(gameThemes && ['code-vibes-theme', 'gaming-theme'].includes(gameThemes)) overSelectorImageSrcAssign('header-button-icon', '/assets/img/exit-game.png', '#');
     if(gameThemes && ['da-projects-theme'].includes(gameThemes)) overSelectorImageSrcAssign('header-button-icon', '/assets/img/exit-game-blue.png', '#');
+    if(gameThemes && ['foods-theme'].includes(gameThemes)) overSelectorImageSrcAssign('header-button-icon', '/assets/img/exit-game-orange.png', '#');
 
     if(gameThemes == 'gaming-theme'){
         imageHover('.header__button__img--gaming-theme', '.header__button--gaming-theme','exit-game-hover', 'exit-game');
@@ -130,6 +133,10 @@ function imageSrcAssign():void {
 
     if(gameThemes == 'da-projects-theme'){
         imageHover('.header__button__img', '.header__button', 'exit-game', 'exit-game-blue');
+    }
+
+    if(gameThemes == 'foods-theme'){
+        imageHover('.header__button__img', '.header__button', 'exit-game-white-small', 'exit-game-orange');
     }
 }
 
@@ -271,30 +278,44 @@ function showWinner(gameOver:HTMLDivElement | null){
 
     setTimeout(() => {
         if(gameOver) gameOver.classList.add('display-none');
-        // if(winnerTitle) winnerTitle.textContent = counterBlue < counterOrange ? 'Orange player' : 'Blue Player';
         if(winnerTitle) winnerTitle.textContent = counterBlue == counterOrange ? 'Undecided' : counterBlue < counterOrange ? 'Orange player' : 'Blue Player';
-            // color: white;
-            // background: linear-gradient(orange, blue);
-        if(winnerTitle && gameThemes == 'code-vibes-theme') winnerTitle.style.color = counterBlue < counterOrange ? '#F58E39' : '#2BB1FF';
-        if(winnerTitle && gameThemes == 'gaming-theme') winnerTitle.style.color = counterBlue < counterOrange ? '#EA6900' : '#097FC5';
-        if(winnerImg && gameThemes && ['code-vibes-theme', 'da-projects-theme'].includes(gameThemes)) winnerImg.src = counterBlue < counterOrange ? `/assets/img/${gameThemes}-winner-orange.png` : `/assets/img/${gameThemes}-winner-blue.png`;
+
+        if(winnerTitle && counterBlue == counterOrange){
+            winnerTitle.style.color = 'white';
+            if(gameThemes == 'code-vibes-theme') winnerTitle.style.background = 'linear-gradient(to left, #F58E39, #2BB1FF)';
+            else if(gameThemes && ['gaming-theme', 'da-projects-theme', 'foods-theme'].includes(gameThemes)) winnerTitle.style.background = 'linear-gradient(to right, #EA6900, #097FC5)';
+            
+        } 
+        else if(winnerTitle && gameThemes == 'code-vibes-theme') winnerTitle.style.color = counterBlue < counterOrange ? '#F58E39' : '#2BB1FF';
+        else if(winnerTitle && gameThemes == 'gaming-theme') winnerTitle.style.color = counterBlue < counterOrange ? '#EA6900' : '#097FC5';
+
+        if(winnerTitle && counterBlue == counterOrange){
+            if(winnerImg && gameThemes && ['code-vibes-theme', 'da-projects-theme', 'foods-theme'].includes(gameThemes)) winnerImg.src = `/assets/img/${gameThemes}-winner-undecided.png`;
+            else if(winnerImg) winnerImg.src = `/assets/img/${gameThemes}-winner.png`;
+        }
+        else if(winnerImg && gameThemes && ['code-vibes-theme', 'da-projects-theme', 'foods-theme'].includes(gameThemes)) winnerImg.src = counterBlue < counterOrange ? `/assets/img/${gameThemes}-winner-orange.png` : `/assets/img/${gameThemes}-winner-blue.png`;
         else if(winnerImg) winnerImg.src = counterBlue < counterOrange ? `/assets/img/${gameThemes}-winner.png` : `/assets/img/${gameThemes}-winner.png`;
         
-        if(winnterBtnText && gameThemes && ['gaming-theme', 'da-projects-theme'].includes(gameThemes)) winnterBtnText.textContent = 'Home';
+        if(winnterBtnText && gameThemes && ['gaming-theme', 'da-projects-theme', 'foods-theme'].includes(gameThemes)) winnterBtnText.textContent = 'Home';
+        if(gameThemes == 'foods-theme')overSelectorAddClass('header__button--winner', `-${gameThemes}`);
         if(winner) winner.classList.remove('display-none');
     }, 2500);
 }
 
 function counterUpBlue():void{
     const counterBlueSpan:HTMLSpanElement | null = document.getElementById('counter-blue');
+    const counterBlueSpanGO:HTMLSpanElement | null = document.getElementById('counter-blue-go');
     counterBlue++
     if(counterBlueSpan)counterBlueSpan.textContent = String(counterBlue);
+    if(counterBlueSpanGO)counterBlueSpanGO.textContent = String(counterBlue);
 }
 
 function counterUpOrange():void{
     const counterOrangeSpan:HTMLSpanElement | null = document.getElementById('counter-orange');
+    const counterOrangeSpanGO:HTMLSpanElement | null = document.getElementById('counter-orange-go');
     counterOrange++;
     if(counterOrangeSpan) counterOrangeSpan.textContent = String(counterOrange);
+    if(counterOrangeSpanGO) counterOrangeSpanGO.textContent = String(counterOrange);
 }
 
 function openOverlay():void{

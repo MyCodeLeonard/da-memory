@@ -69,3 +69,19 @@
   font-style: normal;
   font-display: swap;
 }
+
+@font-face {
+  font-family: "DeliusUnicase";
+  src: url("/assets/fonts/DeliusUnicase-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "DeliusUnicase";
+  src: url("/assets/fonts/DeliusUnicase-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

@@ -1,0 +1,13 @@
+.counters-box {
+    display: flex;
+
+    &__counter {
+        display: flex;
+        align-items: center;
+
+        &_span{
+            white-space: nowrap;
+            width: 1ch;
+        }
+    }
+}

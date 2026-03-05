@@ -1,0 +1,27 @@
+.button-game {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: white;
+
+    &__div{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    &__span {
+        white-space: nowrap;
+    }
+}
+
+.buttons-box {
+    display: flex;
+
+    &__button {
+        cursor: pointer;
+        border: 0;
+        position: relative;
+    }
+}

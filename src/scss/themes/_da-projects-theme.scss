@@ -11,7 +11,7 @@
     }
 }
 
-.header__counters {
+.counters-box {
     &--da-projects-theme{
         background-color: white;
         border-radius: 10px;
@@ -23,21 +23,21 @@
     &--game-over-da-projects-theme{
         padding: 15px 33.35px;
 
-        >.header__counters__counter--da-projects-theme {
+        >.counters-box__counter--da-projects-theme {
             gap: 8px;
 
-            >.header__counters__counter__img--da-projects-theme {
+            >.counters-box__counter__img--da-projects-theme {
                 width: 24px;
             }
 
-            >.header__counters__counter_span--da-projects-theme {
+            >.counters-box__counter_span--da-projects-theme {
                 font-size: 38px;
             }
         }
     }
 }
 
-.header__counters__counter {
+.counters-box__counter {
     &--da-projects-theme{
         gap: 4px;
     }
@@ -76,7 +76,7 @@
     }
 }
 
-.header__button {
+.button-game {
     &--da-projects-theme{
         border-radius: 10px;
         border: 0;
@@ -155,7 +155,7 @@
     }
 }
 
-.query-overlay__pop-up__buttons {
+.buttons-box {
     &--da-projects-theme{
         gap: 24px;
     }

@@ -19,41 +19,9 @@
     gap: 16px 32px;
 }
 
-.header__counters {
-    display: flex;
-}
-
-.header__counters__counter {
-    display: flex;
-    align-items: center;
-
-    &_span{
-        white-space: nowrap;
-        width: 1ch;
-    }
-}
-
 .header__current-player {
     display: flex;
     align-items: center;
-
-    &__span {
-        white-space: nowrap;
-    }
-}
-
-.header__button {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    color: white;
-
-    &__div{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-    }
 
     &__span {
         white-space: nowrap;
@@ -121,16 +89,6 @@
         align-items: center;
         text-align: center;
         margin: 16px;
-    }
-}
-
-.query-overlay__pop-up__buttons {
-    display: flex;
-
-    &__button {
-        cursor: pointer;
-        border: 0;
-        position: relative;
     }
 }
 

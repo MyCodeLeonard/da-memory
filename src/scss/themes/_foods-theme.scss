@@ -11,7 +11,7 @@
     }
 }
 
-.header__counters {
+.counters-box {
     &--foods-theme{
         border-radius: 10px;
         padding: 0 16px;
@@ -24,14 +24,14 @@
         border-radius: 0;
         padding: 13.5px 33.1px;
 
-        >.header__counters__counter--foods-theme {
+        >.counters-box__counter--foods-theme {
             gap: 8px;
 
-            >.header__counters__counter__img--foods-theme {
+            >.counters-box__counter__img--foods-theme {
                 width: 24px;
             }
 
-            >.header__counters__counter_span--foods-theme {
+            >.counters-box__counter_span--foods-theme {
                 font-size: 40px;
                 font-family: 'RedRose';
             }
@@ -39,7 +39,7 @@
     }
 }
 
-.header__counters__counter {
+.counters-box__counter {
     &--foods-theme{
         gap: 4px;
     }
@@ -78,7 +78,7 @@
     }
 }
 
-.header__button {
+.button-game {
     &--foods-theme{
         padding: 12px 20px;
         gap: 10px;
@@ -167,7 +167,7 @@
     }
 }
 
-.query-overlay__pop-up__buttons {
+.buttons-box {
     &--foods-theme{
         gap: 24px;
     }

@@ -15,7 +15,7 @@
     }
 }
 
-.header__counters {
+.counters-box {
     &--gaming-theme{
         border-radius: 10px;
         padding: 8.5px 16px;
@@ -31,7 +31,7 @@
     }
 }
 
-.header__counters__counter {
+.counters-box__counter {
     &--gaming-theme{
         gap: 8px;
     }
@@ -74,7 +74,7 @@
     }
 }
 
-.header__button {
+.button-game {
     &__div--gaming-theme{
         width: 194px;
         height: 60px;
@@ -167,7 +167,7 @@
     }
 }
 
-.query-overlay__pop-up__buttons {
+.buttons-box {
     &--gaming-theme{
         gap: 24px;
     }

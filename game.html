@@ -9,26 +9,28 @@
   <body>
     <section id="game-section" class="game-section">
       <header class="header">
-        <div id="counters" class="header__counters">
-          <div class="header__counters__counter">
-            <img class="header__counters__counter__img header__counters__counter__img--blue" src="" alt="">
-            <span id="counter-blue-name" class="display-none header__counters__counter_span-name header__counters__counter_span-name--blue">Blue</span>
-            <span id="counter-blue" class="header__counters__counter_span header__counters__counter_span--blue">0</span>
+
+        <div id="counters-box" class="counters-box">
+          <div class="counters-box__counter">
+            <img class="counters-box__counter__img counters-box__counter__img--blue" src="" alt="">
+            <span id="counter-blue-name" class="display-none counters-box__counter_span-name counters-box__counter_span-name--blue">Blue</span>
+            <span id="counter-blue" class="counters-box__counter_span counters-box__counter_span--blue">0</span>
           </div>
-          <div class="header__counters__counter">
-            <img class="header__counters__counter__img header__counters__counter__img--orange" src="" alt="">
-            <span id="counter-orange-name" class="display-none header__counters__counter_span-name header__counters__counter_span-name--orange">Orange</span>
-            <span id="counter-orange" class="header__counters__counter_span header__counters__counter_span--orange">0</span>
+          <div class="counters-box__counter">
+            <img class="counters-box__counter__img counters-box__counter__img--orange" src="" alt="">
+            <span id="counter-orange-name" class="display-none counters-box__counter_span-name counters-box__counter_span-name--orange">Orange</span>
+            <span id="counter-orange" class="counters-box__counter_span counters-box__counter_span--orange">0</span>
           </div>
         </div>
+
         <div class="header__current-player">
           <span class="header__current-player__span">Current player:</span>
           <img id="currentPlayer" class="header__current-player__img" src="" alt="">
         </div>
-        <div class="header__button__div">
-          <button class="header__button" id="header-button">
-            <img id="header-button-icon" class="header__button__img" src="" alt="">
-            <span class="header__button__span">Exit game</span>
+        <div class="button-game__div">
+          <button class="button-game" id="header-button">
+            <img id="header-button-icon" class="button-game__img" src="" alt="">
+            <span class="button-game__span">Exit game</span>
           </button>
         </div>
       </header>
@@ -37,36 +39,38 @@
     <div id="query-overlay" class="query-overlay display-none">
       <div id="query-overlay__pop-up" class="query-overlay__pop-up">
         <Span class="query-overlay__pop-up__span">Are you sure you want to quit the game?</Span>
-        <div class="query-overlay__pop-up__buttons">
-          <button id="back-to-game" class="query-overlay__pop-up__buttons__button query-overlay__pop-up__buttons__button--first">Back to game</button>
-          <button id="back-to-settings" href="./settings.html" class="query-overlay__pop-up__buttons__button query-overlay__pop-up__buttons__button--second">Exit game</button>
+        <div class="buttons-box">
+          <button id="back-to-game" class="buttons-box__button buttons-box__button--first">Back to game</button>
+          <button id="back-to-settings" href="./settings.html" class="buttons-box__button buttons-box__button--second">Exit game</button>
         </div>
       </div>
     </div>
     <div id="game-over" class="game-over display-none">
       <h1 class="game-over__h1">Game over</h1>
       <span class="game-over__span">Final score</span>
-      <div id="counters-go" class="header__counters">
-        <div class="header__counters__counter">
-          <img class="header__counters__counter__img header__counters__counter__img--blue" src="" alt="">
-          <span id="counter-blue-name-go" class="display-none header__counters__counter_span-name header__counters__counter_span-name--blue">Blue</span>
-          <span id="counter-blue-go" class="header__counters__counter_span header__counters__counter_span--blue">0</span>
+
+      <div id="counters-box-go" class="counters-box">
+        <div class="counters-box__counter">
+          <img class="counters-box__counter__img counters-box__counter__img--blue" src="" alt="">
+          <span id="counter-blue-name-go" class="display-none counters-box__counter_span-name counters-box__counter_span-name--blue">Blue</span>
+          <span id="counter-blue-go" class="counters-box__counter_span counters-box__counter_span--blue">0</span>
         </div>
-        <div class="header__counters__counter">
-          <img class="header__counters__counter__img header__counters__counter__img--orange" src="" alt="">
-          <span id="counter-orange-name-go" class="display-none header__counters__counter_span-name header__counters__counter_span-name--orange">Orange</span>
-          <span id="counter-orange-go" class="header__counters__counter_span header__counters__counter_span--orange">0</span>
+        <div class="counters-box__counter">
+          <img class="counters-box__counter__img counters-box__counter__img--orange" src="" alt="">
+          <span id="counter-orange-name-go" class="display-none counters-box__counter_span-name counters-box__counter_span-name--orange">Orange</span>
+          <span id="counter-orange-go" class="counters-box__counter_span counters-box__counter_span--orange">0</span>
         </div>
       </div>
+
     </div>
     <div id="winner" class="winner display-none">
       <img id="confetti" class="winner__special-img display-none" src="/assets/img/confetti.png" alt="confetti">
       <span class="winner__span">The winner is</span>
       <h1 id="winner-title" class="winner__h1">Orange player</h1>
       <img id="winner-img" class="winner__img" src="" alt="">
-      <div class="header__button__div">
-        <button class="header__button header__button--winner" id="winner-button">
-          <span id="winner-btn-span" class="header__button__span">Back to start</span>
+      <div class="button-game__div">
+        <button class="button-game button-game--winner" id="winner-button">
+          <span id="winner-btn-span" class="button-game__span">Back to start</span>
         </button>
       </div>
     </div>

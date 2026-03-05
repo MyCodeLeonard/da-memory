@@ -1,0 +1,240 @@
+@use "../abstracts/mixins" as mix;
+
+.header--da-projects-theme{
+    max-width: 1219px;
+    background-color: #F0F3F4;
+    padding: 24px;
+    border-radius: 10px;
+
+    @include mix.responsiveMaxX(700px){
+        justify-content: center;
+    }
+}
+
+.header__counters {
+    &--da-projects-theme{
+        background-color: white;
+        border-radius: 10px;
+        gap: 40px;
+        padding: 8.5px 16px;
+        flex-direction: row-reverse;
+    }
+
+    &--game-over-da-projects-theme{
+        padding: 15px 33.35px;
+
+        >.header__counters__counter--da-projects-theme {
+            gap: 8px;
+
+            >.header__counters__counter__img--da-projects-theme {
+                width: 24px;
+            }
+
+            >.header__counters__counter_span--da-projects-theme {
+                font-size: 38px;
+            }
+        }
+    }
+}
+
+.header__counters__counter {
+    &--da-projects-theme{
+        gap: 4px;
+    }
+
+    &_span{
+        &--blue-da-projects-theme{
+            color: #097FC5;
+        }
+
+        &--orange-da-projects-theme{
+            color: #EA6900;
+        }
+
+        &--da-projects-theme{
+            font-family: 'figtree';
+            font-weight: 700;
+            font-size: 30px;
+        }
+    }
+}
+
+.header__current-player {
+    &--da-projects-theme{
+        gap: 18px;
+    }
+
+    &__span--da-projects-theme{
+        font-family: 'Figtree';
+        font-weight: 700;
+        font-size: clamp(24px, 2.222vw, 32px);
+        color: #1E7594;
+    }
+
+    &__img--da-projects-theme{
+        width: clamp(32px, 2.847vw, 41px);
+    }
+}
+
+.header__button {
+    &--da-projects-theme{
+        border-radius: 10px;
+        border: 0;
+        gap: 10px;
+        padding: 12px 20px;
+        background-color: #BFE5F2;
+        color: #1E7594;
+
+        &:hover{
+            background-color: #1E7594;
+            color: white;
+            box-shadow: 3px 3px 5px 0px #2F2E2E33;
+        }
+    }
+
+    &__span--da-projects-theme{
+        font-family: 'Figtree';
+        font-weight: 700;
+        font-size: 20px;
+    }
+}
+
+.game-field {
+    &--da-projects-theme-16-cards{
+        grid-template-columns: repeat(4, minmax(auto, 120px));
+        gap: 16px;
+        padding: 0 16px;
+        max-width: 561px;
+    }
+    
+    &--da-projects-theme-24-cards{
+        grid-template-columns: repeat(6, minmax(auto, 120px));
+        gap: 6px;
+        padding: 0 6px;
+        max-width: 775px;
+    }
+    
+    &--da-projects-theme-36-cards{
+        grid-template-columns: repeat(6, minmax(auto, 120px));
+        gap: 8px;
+        padding: 0 8px;
+        max-width: 777px;
+    }
+}
+
+.card {
+    &--da-projects-theme[data-revealed="true"]::before {
+        border: 2px solid #1E7594;
+        border-radius: 13px;
+    }
+
+    &__inner--xy-size-da-projects-theme{
+        aspect-ratio: 1 / 0.8334;
+    }
+}
+
+.query-overlay__pop-up {
+    &--da-projects-theme{
+        background-color: #F0F6F9;
+        border-radius: 20px;
+        padding: 40px;
+        gap: 40px;
+    }
+
+    &__span--da-projects-theme{
+        font-family: 'Figtree';
+        font-weight: 700;
+        font-size: 28px;
+        font-size: clamp(19.9px, 1.944vw, 28px);
+        width: 20.637ch;
+        color: #294F60;
+
+        @include mix.responsiveMaxX(480px) {
+            width: auto;
+        }
+    }
+}
+
+.query-overlay__pop-up__buttons {
+    &--da-projects-theme{
+        gap: 24px;
+    }
+
+    &__button{
+        &--da-projects-theme{
+            border-radius: 10px;
+            padding: 12px 20px;
+            font-family: 'Figtree';
+            font-weight: 700;
+            font-size: 16px;
+            box-shadow: 3px 3px 5px 0 #2F2E2E33;
+
+            &:hover{
+                color: white;
+            }
+        }
+
+        &--first-da-projects-theme{
+            background-color: #BFE5F2;
+            color: #1E7594;
+
+            &:hover{
+                background-color: #1E7594;
+            }
+        }
+
+        &--second-da-projects-theme{
+            background-color: #FD8A81;
+            color: white;
+
+            &:hover{
+                background-color: #ED5B50;
+            }
+        }
+    }
+}
+
+.game-over {
+    &--da-projects-theme{
+        background-color: #1E7594;
+    }
+
+    &__h1--da-projects-theme{
+        font-family: 'Figtree';
+        font-weight: 800;
+        font-size: clamp(56px, 9.028vw, 130px);
+        color: #FD5B4F;
+    }
+
+    &__span--da-projects-theme{
+        margin-top: clamp(52px, 7.222vw, 104px);
+        margin-bottom: 24px;
+        font-family: 'Figtree';
+        font-weight: 500;
+        font-size: clamp(32px, 9.028vw, 40px);
+    }
+}
+
+.winner {
+    &--da-projects-theme{
+        background-color: #1E7594;
+    }
+
+    &__span--da-projects-theme{
+        font-family: 'Figtree';
+        font-size: clamp(32px, 2.778vw, 40px);
+        color: white;
+        margin-bottom: 8px;
+    }
+
+    &__h1--da-projects-theme{
+        font-family: 'Figtree';
+        font-weight: 700;
+        font-size: clamp(40px, 5.556vw, 80px);
+        color: white;
+    }
+
+    &__img--da-projects-theme{
+        margin: 64px 0;
+    }
+}

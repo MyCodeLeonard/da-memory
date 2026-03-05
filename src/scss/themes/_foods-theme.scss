@@ -1,0 +1,255 @@
+@use "../abstracts/mixins" as mix;
+
+.header--foods-theme{
+    border-radius: 10px;
+    padding: 24px;
+    background-color: #F0E5D9;
+    max-width: 1219px;
+
+    @include mix.responsiveMaxX(705px){
+        justify-content: center;
+    }
+}
+
+.header__counters {
+    &--foods-theme{
+        border-radius: 10px;
+        padding: 0 16px;
+        background-color: white;
+        gap: 40px;
+        flex-direction: row-reverse;
+    }
+
+    &--game-over-foods-theme{
+        border-radius: 0;
+        padding: 13.5px 33.1px;
+
+        >.header__counters__counter--foods-theme {
+            gap: 8px;
+
+            >.header__counters__counter__img--foods-theme {
+                width: 24px;
+            }
+
+            >.header__counters__counter_span--foods-theme {
+                font-size: 40px;
+                font-family: 'RedRose';
+            }
+        }
+    }
+}
+
+.header__counters__counter {
+    &--foods-theme{
+        gap: 4px;
+    }
+
+    &_span{
+        &--blue-foods-theme{
+            color: #097FC5;
+        }
+
+        &--orange-foods-theme{
+            color: #EA6900;
+        }
+    }
+
+    &--foods-theme{
+        font-family: 'DeliusUnicase';
+        font-weight: 700;
+        font-size: 30px;
+    }
+}
+
+.header__current-player {
+    &--foods-theme{
+        gap: clamp(13px, 1.25vw, 18px);
+    }
+
+    &__span--foods-theme{
+        font-family: 'KleeOne';
+        font-weight: 600;
+        font-size: clamp(24px, 2.222vw, 32px);
+        color: #A45212;
+    }
+
+    &__img--foods-theme{
+        width: clamp(32px, 2.847vw, 41px);
+    }
+}
+
+.header__button {
+    &--foods-theme{
+        padding: 12px 20px;
+        gap: 10px;
+        border-radius: 10px;
+        background-color: #FFF9F2;
+        border: solid 3px #F3832D;
+        color: #F3832D;
+
+        &:hover {
+            background-color: #F3832D;
+            color: white;
+            box-shadow: 3px 3px 5px 0px #2F2E2E33;
+        }
+    }
+
+    &--winner-foods-theme{
+        background-color: #F3832D;
+        color: white;
+        box-shadow: 3px 3px 5px 0px #2F2E2E33;
+
+        &:hover{
+            background-color: #FFF9F2;
+            color: #F3832D;
+            box-shadow: none;
+        }
+    }
+
+    &__span--foods-theme{
+        font-family: 'DeliusUnicase';
+        font-weight: 700;
+        font-size: 16px;
+    }
+}
+
+.game-field {
+    &--foods-theme-16-cards{
+        grid-template-columns: repeat(4, minmax(auto, 122px));
+        gap: 16px;
+        padding: 0 16px;
+        max-width: 569px;
+    }
+
+    &--foods-theme-24-cards{
+        grid-template-columns: repeat(6, minmax(auto, 122px));
+        gap: 8px;
+        padding: 0 8px;
+        max-width: 788px;
+    }
+
+    &--foods-theme-36-cards{
+        grid-template-columns: repeat(6, minmax(auto, 122px));
+        gap: 6px;
+        padding: 0 6px;
+        max-width: 775px;
+    }
+}
+
+.card {
+    &--foods-theme[data-revealed="true"]::before {
+        border: 4px solid #F3832D;
+    }
+
+    &__inner--xy-size-foods-theme{
+        aspect-ratio: 1 / 0.9837;
+    }
+}
+
+.query-overlay__pop-up{
+    &--foods-theme{
+        background-color: #F6F6F6;
+        border-radius: 20px;
+        gap: 40px;
+        padding: 40px;
+    }
+
+    &__span--foods-theme{
+        font-family: 'KleeOne';
+        font-weight: 600;
+        font-size: clamp(20px, 1.944vw, 28px);
+        width: 22ch;
+        color: #A45212;
+
+        @include mix.responsiveMaxX(380px) {
+            width: auto;
+        }
+    }
+}
+
+.query-overlay__pop-up__buttons {
+    &--foods-theme{
+        gap: 24px;
+    }
+
+    &__button{
+        &--foods-theme{
+            border-radius: 10px;
+            padding: 12px 20px;
+            font-family: 'DeliusUnicase';
+            font-weight: 700;
+            font-size: 16px;
+
+            &:hover{
+                box-shadow: 3px 3px 5px 0 #00000033;
+            }
+
+            &::after{
+                content: '';
+                position: absolute;
+                inset: 0;
+                border: solid 3px #F3832D;
+                border-radius: 10px;
+            }
+        }
+
+        &--first-foods-theme{
+            background-color: #FFAB3E;
+            color: white;
+
+            &:hover{
+                background-color: #F3832D;
+            }
+        }
+
+        &--second-foods-theme{
+            background-color: #FFF9F2;
+            color: #F3832D;
+
+            &:hover{
+                background-color: #f7e6d3;
+            }
+        }
+    }
+}
+
+.game-over {
+    &--foods-theme{
+        background-color: #F3832D;
+    }
+
+    &__h1--foods-theme{
+        font-family: 'KleeOne';
+        font-weight: 600;
+        font-size: 130px;
+        color: white;
+    }
+
+    &__span--foods-theme{
+        margin-top: 104px;
+        margin-bottom: 24px;
+        font-family: 'KleeOne';
+        font-weight: 600;
+        font-size: 42px;
+    }
+}
+
+.winner {
+    &__span--foods-theme{
+        font-family: 'KleeOne';
+        font-size: 40px;
+        color: #A45212;
+        margin-bottom: 8px;
+    }
+
+    &__h1--foods-theme{
+        font-family: 'KleeOne';
+        font-weight: 600;
+        font-size: 80px;
+        color: #A45212;
+    }
+
+    &__img--foods-theme{
+        margin: 64px 0;
+    }
+}

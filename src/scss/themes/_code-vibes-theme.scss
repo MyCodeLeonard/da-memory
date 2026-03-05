@@ -1,0 +1,260 @@
+@use "../abstracts/mixins" as mix;
+
+.game-section--code-vibes-theme{
+    background-color: #303131;
+}
+
+.header--code-vibes-theme{
+    max-width: 1217px;
+    padding: 0;
+    background-color: transparent;
+
+    @include mix.responsiveMaxX(823px) {
+        justify-content: center;
+    }
+}
+
+.header__counters{
+    &--code-vibes-theme{
+        padding: 17px 20px;
+        gap: 20px;
+        background-color: #415652;
+    }
+
+    &--game-over-code-vibes-theme{
+        gap: clamp(20px, 2.222vw, 32px);
+        padding: 16.5px 31.22px;
+        
+    }
+}
+
+.header__counters__counter {
+    &--code-vibes-theme{
+        gap: 4px;
+    }
+
+    &_span{
+        &-name{
+            font-family: 'RedRose';
+            font-weight: 700;
+            font-size: 24px;
+    
+            &--orange{
+                color: #F58E39;
+            }
+    
+            &--blue{
+                color: #2BB1FF;
+            }
+        }
+
+        &--blue-code-vibes-theme{
+            color: #2BB1FF;
+        }
+
+        &--orange-code-vibes-theme {
+            color: #F58E39;
+        }
+
+        &--code-vibes-theme{
+            font-family: 'Comfortaa';
+            font-weight: 700;
+            font-size: 24px;
+        }
+    }
+}
+
+.header__current-player {
+    &--code-vibes-theme{
+        align-self: end;
+        gap: 8px;
+    }
+
+    &__span--code-vibes-theme{
+        font-family: 'RedRose';
+        font-weight: 400;
+        font-size: 26px;
+        color: white;
+    }
+}
+
+.header__button {
+    &__div--code-vibes-theme{
+        width: 213px;
+        height: 64px;
+    }
+
+    &--code-vibes-theme{
+        padding: 16px 24px;
+        gap: 10px;
+        background-color: #405551;
+        border: solid 1px #4DD5BC;
+        transition: all 200ms ease-out;
+
+        &:hover{
+            box-shadow: 4px 4px 4px rgba(240, 234, 110, 0.2);
+            border-width: 3px;
+        }
+    }
+
+    &__span--code-vibes-theme{
+        font-family: 'RedRose';
+        font-weight: 700;
+        font-size: clamp(20px, 1.667vw, 24px);
+    }
+}
+
+.game-field{
+    &--code-vibes-theme-16-cards{
+        grid-template-columns: repeat(4, minmax(auto, 120px));
+        gap: 16px;
+        padding: 0 16px;
+        max-width: 561px;
+    }
+    
+    &--code-vibes-theme-24-cards{
+        grid-template-columns: repeat(6, minmax(auto, 120px));
+        gap: 6px;
+        padding: 0 6px;
+        max-width: 763px;
+    }
+    
+    &--code-vibes-theme-36-cards{
+        grid-template-columns: repeat(6, minmax(auto, 120px));
+        gap: 6px;
+        padding: 0 6px;
+        max-width: 763px;
+    }
+}
+
+.card {
+    &--code-vibes-theme[data-revealed="true"]::before {
+        border: 5px solid #4DD5BC;
+    }
+
+    &__inner--xy-size-code-vibes-theme{
+        aspect-ratio: 1 / 1;
+    }
+}
+
+.query-overlay__pop-up{
+    &--code-vibes-theme{
+        background-color: white;
+        padding: 40px;
+        gap: 54px;
+    }
+
+    &__span--code-vibes-theme{
+        font-family: 'RedRose';
+        font-weight: 700;
+        font-size: clamp(20px, 2.22vw, 32px);
+        color: #303131;
+        width: 24ch;
+
+        @include mix.responsiveMaxX(430px) {
+            width: auto;
+        }
+    }
+    
+}
+
+.query-overlay__pop-up__buttons {
+    &--code-vibes-theme{
+        gap: 16px;
+    }
+
+    &__button {
+        &--code-vibes-theme{
+            font-size: clamp(16px, 1.389vw, 20px);
+            padding: 16px 24px;
+            font-weight: 600;
+            font-family: 'RedRose';
+
+            &:hover {
+                &::after{
+                    content: '';
+                    position: absolute;
+                    inset: 0;
+                    border: 3px solid #3ABCA4;
+                }
+            }
+        }
+
+        &--first-code-vibes-theme{
+            background-color: #66cfbc;
+            color: white;
+
+            &:hover {
+                background-color: #66CFBCB2;
+            }
+        }
+
+        &--second-code-vibes-theme{
+            background-color: #86E9D624;
+            color: #4DD5BC;
+
+            &::after{
+                content: '';
+                position: absolute;
+                inset: 0;
+                border: 2px solid #3ABCA4;
+            }
+
+            &:hover{
+                background-color: #86e9d659;;
+            }
+        }
+    }
+}
+
+.game-over {
+    &--code-vibes-theme{
+        background-color: #303131;
+    }
+
+    &__h1--code-vibes-theme{
+        color: #4DD5BC;
+        text-shadow: -7px 0px 8px #4DD5BC80, -2px -2px white;
+        font-size: clamp(56px, 13.125vw, 189px);
+        font-family: 'RedRose';
+        font-weight: 900;
+    }
+
+    &__span--code-vibes-theme {
+        font-family: 'RedRose';
+        font-size: 26px;
+        margin-bottom: 24px;
+        margin-top: 72px;
+    }
+}
+
+.winner {
+    &--code-vibes-theme{
+        justify-content: flex-start;
+        background-color: #303131;
+    }
+
+    &__special-img--code-vibes-theme{
+        width: 100%;
+        aspect-ratio: 1 / 0.29085;
+        max-width: 1233.922px;
+    }
+
+    &__span--code-vibes-theme{
+        margin-top: -32px;
+        font-size: clamp(32px, 2.778vw, 40px);
+        font-family: 'RedRose';
+        color: white;
+    }
+
+    &__h1--code-vibes-theme{
+        font-family: 'RedRose';
+        font-size: clamp(40px, 4.167vw, 60px);
+        font-weight: 700;
+        margin-top: 10px;
+    }
+
+    &__img--code-vibes-theme{
+        margin: 64px 0;
+    }
+}

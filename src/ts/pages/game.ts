@@ -162,7 +162,7 @@ function overSelectorImageSrcAssign(selectedAllElements:string, imageSrc:string,
 
 function imageHover(imgElementName:string, hoverElementName:string, hoverImageSrc:string, noHoverImageSrc:string):void {
     let imgElement = document.querySelector(imgElementName) as HTMLImageElement | null;
-    let hoverElement = document.querySelector(hoverElementName) as HTMLButtonElement | null;
+    let hoverElement = document.querySelector(hoverElementName) as HTMLElement | null;
 
     if(hoverElement && imgElement){
         hoverElement.addEventListener('mouseover', () =>  imgElement.src = '/assets/img/' + hoverImageSrc + '.png');

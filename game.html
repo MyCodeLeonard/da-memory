@@ -9,7 +9,6 @@
   <body>
     <section id="game-section" class="game-section">
       <header class="header">
-
         <div id="counters" class="header__counters">
           <div class="header__counters__counter">
             <img class="header__counters__counter__img header__counters__counter__img--blue" src="" alt="">
@@ -22,24 +21,19 @@
             <span id="counter-orange" class="header__counters__counter_span header__counters__counter_span--orange">0</span>
           </div>
         </div>
-
         <div class="header__current-player">
           <span class="header__current-player__span">Current player:</span>
           <img id="currentPlayer" class="header__current-player__img" src="" alt="">
         </div>
-
         <div class="header__button__div">
           <button class="header__button" id="header-button">
             <img id="header-button-icon" class="header__button__img" src="" alt="">
             <span class="header__button__span">Exit game</span>
           </button>
         </div>
-
       </header>
-
       <div id="game-field" class="game-field"></div>
     </section>
-
     <div id="query-overlay" class="query-overlay display-none">
       <div id="query-overlay__pop-up" class="query-overlay__pop-up">
         <Span class="query-overlay__pop-up__span">Are you sure you want to quit the game?</Span>
@@ -49,12 +43,9 @@
         </div>
       </div>
     </div>
-
     <div id="game-over" class="game-over display-none">
       <h1 class="game-over__h1">Game over</h1>
       <span class="game-over__span">Final score</span>
-
-
       <div id="counters-go" class="header__counters">
         <div class="header__counters__counter">
           <img class="header__counters__counter__img header__counters__counter__img--blue" src="" alt="">
@@ -67,24 +58,18 @@
           <span id="counter-orange-go" class="header__counters__counter_span header__counters__counter_span--orange">0</span>
         </div>
       </div>
-
-
     </div>
-
     <div id="winner" class="winner display-none">
       <img id="confetti" class="winner__special-img display-none" src="/assets/img/confetti.png" alt="confetti">
       <span class="winner__span">The winner is</span>
       <h1 id="winner-title" class="winner__h1">Orange player</h1>
       <img id="winner-img" class="winner__img" src="" alt="">
-      
       <div class="header__button__div">
         <button class="header__button header__button--winner" id="winner-button">
           <span id="winner-btn-span" class="header__button__span">Back to start</span>
         </button>
       </div>
-
     </div>
-
     <script type="module" src="/src/scss/main.scss"></script>
     <script type="module" src="/src/ts/pages/game.ts"></script>
   </body>

@@ -172,43 +172,41 @@
         gap: 24px;
     }
 
-    &__button{
-        &--foods-theme{
+    &__button--foods-theme{
+        border-radius: 10px;
+        padding: 12px 20px;
+        font-family: 'DeliusUnicase';
+        font-weight: 700;
+        font-size: 16px;
+    
+        &:hover{
+            box-shadow: 3px 3px 5px 0 #00000033;
+        }
+    
+        &::after{
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: solid 3px #F3832D;
             border-radius: 10px;
-            padding: 12px 20px;
-            font-family: 'DeliusUnicase';
-            font-weight: 700;
-            font-size: 16px;
-
-            &:hover{
-                box-shadow: 3px 3px 5px 0 #00000033;
-            }
-
-            &::after{
-                content: '';
-                position: absolute;
-                inset: 0;
-                border: solid 3px #F3832D;
-                border-radius: 10px;
-            }
         }
-
-        &--first-foods-theme{
-            background-color: #FFAB3E;
-            color: white;
-
-            &:hover{
-                background-color: #F3832D;
-            }
+    }
+    
+    &__button--first-foods-theme{
+        background-color: #FFAB3E;
+        color: white;
+    
+        &:hover{
+            background-color: #F3832D;
         }
-
-        &--second-foods-theme{
-            background-color: #FFF9F2;
-            color: #F3832D;
-
-            &:hover{
-                background-color: #f7e6d3;
-            }
+    }
+    
+    &__button--second-foods-theme{
+        background-color: #FFF9F2;
+        color: #F3832D;
+    
+        &:hover{
+            background-color: #f7e6d3;
         }
     }
 }

@@ -163,46 +163,44 @@
         gap: 16px;
     }
 
-    &__button {
-        &--code-vibes-theme{
-            font-size: clamp(16px, 1.389vw, 20px);
-            padding: 16px 24px;
-            font-weight: 600;
-            font-family: 'RedRose';
+    &__button--code-vibes-theme{
+        font-size: clamp(16px, 1.389vw, 20px);
+        padding: 16px 24px;
+        font-weight: 600;
+        font-family: 'RedRose';
 
-            &:hover {
-                &::after{
-                    content: '';
-                    position: absolute;
-                    inset: 0;
-                    border: 3px solid #3ABCA4;
-                }
-            }
-        }
-
-        &--first-code-vibes-theme{
-            background-color: #66cfbc;
-            color: white;
-
-            &:hover {
-                background-color: #66CFBCB2;
-            }
-        }
-
-        &--second-code-vibes-theme{
-            background-color: #86E9D624;
-            color: #4DD5BC;
-
+        &:hover {
             &::after{
                 content: '';
                 position: absolute;
                 inset: 0;
-                border: 2px solid #3ABCA4;
+                border: 3px solid #3ABCA4;
             }
+        }
+    }
 
-            &:hover{
-                background-color: #86e9d659;;
-            }
+    &__button--first-code-vibes-theme{
+        background-color: #66cfbc;
+        color: white;
+
+        &:hover {
+            background-color: #66CFBCB2;
+        }
+    }
+
+    &__button--second-code-vibes-theme{
+        background-color: #86E9D624;
+        color: #4DD5BC;
+
+        &::after{
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 2px solid #3ABCA4;
+        }
+
+        &:hover{
+            background-color: #86e9d659;;
         }
     }
 }

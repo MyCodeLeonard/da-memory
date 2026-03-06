@@ -160,36 +160,34 @@
         gap: 24px;
     }
 
-    &__button{
-        &--da-projects-theme{
-            border-radius: 10px;
-            padding: 12px 20px;
-            font-family: 'Figtree';
-            font-weight: 700;
-            font-size: 16px;
-            box-shadow: 3px 3px 5px 0 #2F2E2E33;
+    &__button--da-projects-theme{
+        border-radius: 10px;
+        padding: 12px 20px;
+        font-family: 'Figtree';
+        font-weight: 700;
+        font-size: 16px;
+        box-shadow: 3px 3px 5px 0 #2F2E2E33;
 
-            &:hover{
-                color: white;
-            }
-        }
-
-        &--first-da-projects-theme{
-            background-color: #BFE5F2;
-            color: #1E7594;
-
-            &:hover{
-                background-color: #1E7594;
-            }
-        }
-
-        &--second-da-projects-theme{
-            background-color: #FD8A81;
+        &:hover{
             color: white;
+        }
+    }
 
-            &:hover{
-                background-color: #ED5B50;
-            }
+    &__button--first-da-projects-theme{
+        background-color: #BFE5F2;
+        color: #1E7594;
+
+        &:hover{
+            background-color: #1E7594;
+        }
+    }
+
+    &__button--second-da-projects-theme{
+        background-color: #FD8A81;
+        color: white;
+
+        &:hover{
+            background-color: #ED5B50;
         }
     }
 }

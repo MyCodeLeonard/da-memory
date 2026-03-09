@@ -10,19 +10,31 @@ function initSettings():void{
 }
 
 function setFromStorage() {
+    setLocalStorageGameThemes();
+    setLocalStorageChoosePlayer();
+    setLocalStorageBoardSize();
+}
+
+function setLocalStorageGameThemes():void {
     let localStorageGameThemes: string | null = localStorage.getItem('gameThemes');
-    let localStorageChoosePlayer: string | null = localStorage.getItem('choosePlayer');
-    let localStorageBoardSize: string | null = localStorage.getItem('boardSize');
 
     if(localStorageGameThemes){
         let gameThemesRadio = document.getElementById(localStorageGameThemes) as HTMLInputElement | null;
         if(gameThemesRadio) gameThemesRadio.checked = true;
     }
+}
+
+function setLocalStorageChoosePlayer():void {
+    let localStorageChoosePlayer: string | null = localStorage.getItem('choosePlayer');
 
     if(localStorageChoosePlayer){
         let choosePlayerRadio = document.getElementById(localStorageChoosePlayer) as HTMLInputElement | null;
         if(choosePlayerRadio) choosePlayerRadio.checked = true;
     }
+}
+
+function setLocalStorageBoardSize():void {
+    let localStorageBoardSize: string | null = localStorage.getItem('boardSize');
 
     if(localStorageBoardSize){
         let boardSizeRadio = document.getElementById(localStorageBoardSize) as HTMLInputElement | null;
@@ -35,21 +47,35 @@ function buttonEventListener():void{
     if(startBtn) startBtn.addEventListener('click', startGame);
 }
 
-function startBoxSelect(){
+function startBoxSelect():void {
     valuesTransfer();
-    const startBoxGameTheme:HTMLSpanElement | null = document.getElementById('start-box-game-themes');
-    const startBoxPlayer:HTMLSpanElement | null = document.getElementById('start-box-player');
-    const startBoxBoardSize:HTMLSpanElement | null = document.getElementById('start-box-board-size');
 
-    const gameThemeContent:string = gameThemeContentSelect();
-    const playerContent:string = playerContentSelect();
-    const boardSizeContent:string = boardSizeContentSelect();
-
-    if(startBoxGameTheme) startBoxGameTheme.textContent = gameThemeContent;
-    if(startBoxPlayer) startBoxPlayer.textContent = playerContent;
-    if(startBoxBoardSize) startBoxBoardSize.textContent = boardSizeContent;
+    setStartBoxGameTheme();
+    setStartBoxPlayer();
+    setStartBoxBoardSize();
 
     sizeQuery();
+}
+
+function setStartBoxGameTheme():void {
+    const startBoxGameTheme:HTMLSpanElement | null = document.getElementById('start-box-game-themes');
+    const gameThemeContent:string = gameThemeContentSelect();
+
+    if(startBoxGameTheme) startBoxGameTheme.textContent = gameThemeContent;
+}
+
+function setStartBoxPlayer():void {
+    const startBoxPlayer:HTMLSpanElement | null = document.getElementById('start-box-player');
+    const playerContent:string = playerContentSelect();
+
+    if(startBoxPlayer) startBoxPlayer.textContent = playerContent;
+}
+
+function setStartBoxBoardSize():void {
+    const startBoxBoardSize:HTMLSpanElement | null = document.getElementById('start-box-board-size');
+    const boardSizeContent:string = boardSizeContentSelect();
+
+    if(startBoxBoardSize) startBoxBoardSize.textContent = boardSizeContent;
 }
 
 function gameThemeContentSelect():string {
@@ -73,32 +99,63 @@ function boardSizeContentSelect():string {
     else return 'Board size';
 }
 
-function buttonActivate(){
+function buttonActivate():void {
     const startBtn = document.getElementById('start-game') as HTMLButtonElement | null;
     if(startBtn) startBtn.disabled = false;
 }
 
-function valuesTransfer():boolean{
-    let gameThemes:string | null = document.querySelectorAll("input[name=game-themes]:checked")[0]?.id;
-    let choosePlayer:string | null = document.querySelectorAll("input[name=choose-player]:checked")[0]?.id;
-    let boardSize:string | null = document.querySelectorAll("input[name=board-size]:checked")[0]?.id;
+function valuesTransfer():boolean {
+    let isGameThemes:boolean = setGameThemesLocalStorage();
+    let isChoosePlayer:boolean = setChoosePlayerLocalStorage();
+    let isBoardSize:boolean = setBoardSizeLocalStorage();
 
-    if(gameThemes) localStorage.setItem('gameThemes', gameThemes);
-    if(choosePlayer) localStorage.setItem('choosePlayer', choosePlayer);
-    if(boardSize) localStorage.setItem('boardSize', boardSize);
-
-    if(gameThemes && choosePlayer && boardSize){
+    if(isGameThemes && isChoosePlayer && isBoardSize){
         buttonActivate();
         return true
-    } 
+    }
+
     else return false
 }
 
-function startGame(){
+function setGameThemesLocalStorage():boolean {
+    let gameThemes:string | null = document.querySelectorAll("input[name=game-themes]:checked")[0]?.id;
+
+    if(gameThemes){
+        localStorage.setItem('gameThemes', gameThemes);
+        return true
+    }
+
+    else return false
+
+}
+
+function setChoosePlayerLocalStorage():boolean {
+    let choosePlayer:string | null = document.querySelectorAll("input[name=choose-player]:checked")[0]?.id;
+
+    if(choosePlayer){
+        localStorage.setItem('choosePlayer', choosePlayer);
+        return true;
+    }
+
+    else return false;
+}
+
+function setBoardSizeLocalStorage():boolean {
+    let boardSize:string | null = document.querySelectorAll("input[name=board-size]:checked")[0]?.id;
+
+    if(boardSize){
+        localStorage.setItem('boardSize', boardSize);
+        return true
+    }
+
+    else return false;
+}
+
+function startGame():void {
     if(valuesTransfer()) window.location.href = "./game";
 }
 
-function sizeQuery(){
+function sizeQuery():void {
     const rightBox = document.getElementById('right-box');
     const startBox = document.getElementById('start-box');
     if(rightBox && startBox) rightBox.style.width = `${startBox.clientWidth}px`;

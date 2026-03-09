@@ -95,7 +95,7 @@ function valuesTransfer():boolean{
 }
 
 function startGame(){
-    if(valuesTransfer()) window.location.href = "/game";
+    if(valuesTransfer()) window.location.href = "./game";
 }
 
 function sizeQuery(){

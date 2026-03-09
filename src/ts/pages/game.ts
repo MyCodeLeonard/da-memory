@@ -46,8 +46,8 @@ function initGame():void {
 function eventListeners():void {
     if(headerBtn) headerBtn.addEventListener('click', openOverlay);
     if(backToGameBtn) backToGameBtn.addEventListener('click', closeOverlay);
-    if(backToSettingsBtn) backToSettingsBtn.addEventListener('click', () => window.location.href = "/settings");
-    if(winnerBackToSettingsBtn) winnerBackToSettingsBtn.addEventListener('click', () => window.location.href = "/settings");
+    if(backToSettingsBtn) backToSettingsBtn.addEventListener('click', () => window.location.href = "./settings");
+    if(winnerBackToSettingsBtn) winnerBackToSettingsBtn.addEventListener('click', () => window.location.href = "./settings");
     if(overlayPopUp) overlayPopUp.addEventListener('click', bubbling);
     if(overlay) overlay.addEventListener('click', closeOverlay);
 }
@@ -130,17 +130,17 @@ function winnerOverlayAddClass():void {
 }
 
 function imageSrcAssign():void {
-    overSelectorImageSrcAssign('counters-box__counter__img--blue', `/assets/img/${gameThemes}-player-blue.png`);
-    overSelectorImageSrcAssign('counters-box__counter__img--orange', `/assets/img/${gameThemes}-player-orange.png`);
+    overSelectorImageSrcAssign('counters-box__counter__img--blue', `./assets/img/${gameThemes}-player-blue.png`);
+    overSelectorImageSrcAssign('counters-box__counter__img--orange', `./assets/img/${gameThemes}-player-orange.png`);
 
     setExitGameImage();
     setExitGameHoverImage();
 }
 
 function setExitGameImage():void {
-    if(gameThemes && ['code-vibes-theme', 'gaming-theme'].includes(gameThemes)) overSelectorImageSrcAssign('header-button-icon', '/assets/img/exit-game.png', '#');
-    if(gameThemes && ['da-projects-theme'].includes(gameThemes)) overSelectorImageSrcAssign('header-button-icon', '/assets/img/exit-game-blue.png', '#');
-    if(gameThemes && ['foods-theme'].includes(gameThemes)) overSelectorImageSrcAssign('header-button-icon', '/assets/img/exit-game-orange.png', '#');
+    if(gameThemes && ['code-vibes-theme', 'gaming-theme'].includes(gameThemes)) overSelectorImageSrcAssign('header-button-icon', './assets/img/exit-game.png', '#');
+    if(gameThemes && ['da-projects-theme'].includes(gameThemes)) overSelectorImageSrcAssign('header-button-icon', './assets/img/exit-game-blue.png', '#');
+    if(gameThemes && ['foods-theme'].includes(gameThemes)) overSelectorImageSrcAssign('header-button-icon', './assets/img/exit-game-orange.png', '#');
 }
 
 function setExitGameHoverImage():void {
@@ -179,15 +179,15 @@ function imageHover(imgElementName:string, hoverElementName:string, hoverImageSr
     let hoverElement = document.querySelector(hoverElementName) as HTMLElement | null;
 
     if(hoverElement && imgElement){
-        hoverElement.addEventListener('mouseover', () =>  imgElement.src = '/assets/img/' + hoverImageSrc + '.png');
-        hoverElement.addEventListener('mouseleave', () => imgElement.src = '/assets/img/' + noHoverImageSrc + '.png');
+        hoverElement.addEventListener('mouseover', () =>  imgElement.src = './assets/img/' + hoverImageSrc + '.png');
+        hoverElement.addEventListener('mouseleave', () => imgElement.src = './assets/img/' + noHoverImageSrc + '.png');
     }
 }
 
 function setCurrentPlayer():void {
     const currentPlayerIcon = document.getElementById('currentPlayer') as HTMLImageElement | null;
-    if(currentPlayerIcon && gameThemes && ['da-projects-theme', 'foods-theme'].includes(gameThemes)) currentPlayerIcon.src =`/assets/img/current-${currentPlayer}.png`;
-    else if(currentPlayerIcon) currentPlayerIcon.src = `/assets/img/${gameThemes}-current-${currentPlayer}.png`;
+    if(currentPlayerIcon && gameThemes && ['da-projects-theme', 'foods-theme'].includes(gameThemes)) currentPlayerIcon.src =`./assets/img/current-${currentPlayer}.png`;
+    else if(currentPlayerIcon) currentPlayerIcon.src = `./assets/img/${gameThemes}-current-${currentPlayer}.png`;
 }
 
 function setGameThemeBoardSize():void {
@@ -201,16 +201,16 @@ function generateCards():void {
         }
     }
 
-    else window.location.href = "/settings";
+    else window.location.href = "./settings";
 }
 
 function createCard(index:number):void {
     const card: HTMLButtonElement = document.createElement('button');
 
-    card.dataset.pair = gameThemes+'-front-'+selectedShuffledCardsArray[index];
+    card.dataset.cardId = gameThemes+'-front-'+selectedShuffledCardsArray[index];
     card.dataset.revealed = 'false';
     card.classList.add('card', `card--${gameThemes}`);
-    card.innerHTML = `<div class="card__inner card__inner--xy-size-${gameThemes}"><img class="card__face card__face--front" src="assets/img/${card.dataset.pair}.png" alt=""><img class="card__face card__face--back" src="assets/img/${gameThemes}-back.png" alt=""></div>`
+    card.innerHTML = `<div class="card__inner card__inner--xy-size-${gameThemes}"><img class="card__face card__face--front" src="./assets/img/${card.dataset.cardId}.png" alt=""><img class="card__face card__face--back" src="./assets/img/${gameThemes}-back.png" alt=""></div>`
     
     overSelectorAddClass('card__face--front', `-${gameThemes}`);
     cardClickEvent(card);
@@ -228,7 +228,7 @@ function cardClickEvent(card:HTMLButtonElement):void {
 function revealTwoCards(card:HTMLButtonElement):void {
     card.classList.add('is-flipped');
 
-    if(document.querySelectorAll(`.is-flipped[data-pair='${card.dataset.pair}'][data-revealed = 'false']`).length == 2){
+    if(document.querySelectorAll(`.is-flipped[data-card-id='${card.dataset.cardId}'][data-revealed = 'false']`).length == 2){
         twoSameCards(card);
     }
 
@@ -241,7 +241,7 @@ function twoSameCards(card:HTMLButtonElement):void {
     if(currentPlayer == 'player-blue') counterUpBlue();
     if(currentPlayer == 'player-orange') counterUpOrange();
 
-    document.querySelectorAll<HTMLButtonElement>(`.is-flipped[data-pair='${card.dataset.pair}']`).forEach(element => {
+    document.querySelectorAll<HTMLButtonElement>(`.is-flipped[data-card-id='${card.dataset.cardId}']`).forEach(element => {
         element.dataset.revealed = 'true';
         element.removeEventListener;
     });
@@ -308,8 +308,8 @@ function showWinnerOrange(winnerTitle: HTMLElement | null, winnerImg:HTMLImageEl
         if(gameThemes == 'code-vibes-theme') winnerTitle.style.color = '#F58E39';
         if(gameThemes == 'gaming-theme') winnerTitle.style.color = '#EA6900'
 
-        if(winnerImg && gameThemes && ['code-vibes-theme', 'da-projects-theme', 'foods-theme'].includes(gameThemes)) winnerImg.src = `/assets/img/${gameThemes}-winner-orange.png`;
-        else if(winnerImg) winnerImg.src = `/assets/img/${gameThemes}-winner.png`;
+        if(winnerImg && gameThemes && ['code-vibes-theme', 'da-projects-theme', 'foods-theme'].includes(gameThemes)) winnerImg.src = `./assets/img/${gameThemes}-winner-orange.png`;
+        else if(winnerImg) winnerImg.src = `./assets/img/${gameThemes}-winner.png`;
     }
 }
 
@@ -319,8 +319,8 @@ function showWinnerBlue(winnerTitle: HTMLElement | null, winnerImg:HTMLImageElem
         if(gameThemes == 'code-vibes-theme') winnerTitle.style.color = '#2BB1FF';
         if(gameThemes == 'gaming-theme') winnerTitle.style.color = '#097FC5';
 
-        if(winnerImg && gameThemes && ['code-vibes-theme', 'da-projects-theme', 'foods-theme'].includes(gameThemes)) winnerImg.src = `/assets/img/${gameThemes}-winner-blue.png`;
-        else if(winnerImg) winnerImg.src = `/assets/img/${gameThemes}-winner.png`;
+        if(winnerImg && gameThemes && ['code-vibes-theme', 'da-projects-theme', 'foods-theme'].includes(gameThemes)) winnerImg.src = `./assets/img/${gameThemes}-winner-blue.png`;
+        else if(winnerImg) winnerImg.src = `./assets/img/${gameThemes}-winner.png`;
     }
 }
 
@@ -332,8 +332,8 @@ function showWinnerUndecided(winnerTitle: HTMLElement | null, winnerImg:HTMLImag
         if(gameThemes == 'code-vibes-theme') winnerTitle.style.background = 'linear-gradient(to left, #F58E39, #2BB1FF)';
         else if(gameThemes && ['gaming-theme', 'da-projects-theme', 'foods-theme'].includes(gameThemes)) winnerTitle.style.background = 'linear-gradient(to right, #EA6900, #097FC5)';
 
-        if(winnerImg && gameThemes && ['code-vibes-theme', 'da-projects-theme', 'foods-theme'].includes(gameThemes)) winnerImg.src = `/assets/img/${gameThemes}-winner-undecided.png`;
-        else if(winnerImg) winnerImg.src = `/assets/img/${gameThemes}-winner.png`;
+        if(winnerImg && gameThemes && ['code-vibes-theme', 'da-projects-theme', 'foods-theme'].includes(gameThemes)) winnerImg.src = `./assets/img/${gameThemes}-winner-undecided.png`;
+        else if(winnerImg) winnerImg.src = `./assets/img/${gameThemes}-winner.png`;
     }
 }
 

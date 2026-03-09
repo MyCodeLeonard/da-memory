@@ -84,7 +84,7 @@ function headerAddClass():void {
     overSelectorAddClass('header__current-player__img', `--${gameThemes}`);
 }
 
-function counterBoxAddClass(){
+function counterBoxAddClass():void {
     overSelectorAddClass('counters-box', `--${gameThemes}`);
     overSelectorAddClass('counters-box__counter_span', `--${gameThemes}`);
     overSelectorAddClass('counters-box__counter', `--${gameThemes}`);
@@ -247,7 +247,7 @@ function twoSameCards(card:HTMLButtonElement):void {
     });
 }
 
-function twoOddCards(){
+function twoOddCards():void {
     document.querySelectorAll(".is-flipped[data-revealed='false']").forEach(element => {
         setTimeout(() => element.classList.remove('is-flipped'), 400);
     });
@@ -255,7 +255,7 @@ function twoOddCards(){
     changePlayer();
 }
 
-function changePlayer(){
+function changePlayer():void {
     setTimeout(() => {
         if(currentPlayer == 'player-blue'){
             currentPlayer = "player-orange";
